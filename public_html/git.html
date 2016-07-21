@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2016-07-21 Thu 10:08 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="viewport" content="width=device-width, initial-scale=1" />
+<title>Git Notes</title>
+<meta  name="generator" content="Org-mode" />
+<meta  name="author" content="Arun S" />
+<meta  name="description" content="git notes"
+ />
+<meta  name="keywords" content="git, version control" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Git Notes</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgheadline1">1. Color coded git output</a></li>
+<li><a href="#orgheadline2">2. Handling merge request in gitorious (and maybe others):</a></li>
+<li><a href="#orgheadline3">3. If git has trouble getting code from github etc:</a></li>
+<li><a href="#orgheadline4">4. Git objects:</a></li>
+<li><a href="#orgheadline5">5. Reverting a reverted commit in git</a></li>
+<li><a href="#orgheadline6">6. Git stash:</a></li>
+<li><a href="#orgheadline7">7. Git commits that aren't in master</a></li>
+<li><a href="#orgheadline8">8. Stash: checkout a pull request</a></li>
+<li><a href="#orgheadline9">9. Git rebase vs normal pull</a></li>
+<li><a href="#orgheadline10">10. Git log on a file</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgheadline1" class="outline-2">
+<h2 id="orgheadline1"><span class="section-number-2">1</span> Color coded git output</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+<code>git config --global color.ui true</code>
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline2" class="outline-2">
+<h2 id="orgheadline2"><span class="section-number-2">2</span> Handling merge request in gitorious (and maybe others):</h2>
+<div class="outline-text-2" id="text-2">
+<ul class="org-ul">
+<li>Changes will be pulled into a local branch for review. If the changes are approved they will be merged back to the master and pushed into the remote repository.</li>
+<li>Check out a new branch for integration</li>
+</ul>
+<p>
+<code>git checkout -b merge-requests/1&lt;code&gt;</code>
+</p>
+
+<ul class="org-ul">
+<li>Fetch the merge request into this branch</li>
+</ul>
+<p>
+<code>git pull git://gitorious.org/project/project.git refs/merge-requests/1</code>
+</p>
+
+<ul class="org-ul">
+<li>Show the commits, assess they are okay</li>
+</ul>
+<p>
+<code>git log --pretty=oneline --abbrev-commit master..merge-requests/1&lt;/code&gt;</code>
+</p>
+
+<ul class="org-ul">
+<li>Apply the changes to your branch</li>
+</ul>
+<div class="org-src-container">
+
+<pre class="src src-sh">git checkout master
+git merge merge-requests/1
+git push origin master
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline3" class="outline-2">
+<h2 id="orgheadline3"><span class="section-number-2">3</span> If git has trouble getting code from github etc:</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+<code>export GIT_SSL_NO_VERIFY=true</code>
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline4" class="outline-2">
+<h2 id="orgheadline4"><span class="section-number-2">4</span> Git objects:</h2>
+<div class="outline-text-2" id="text-4">
+<ul class="org-ul">
+<li>Tree</li>
+<li>Blob</li>
+<li>Commit</li>
+<li>Tag</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgheadline5" class="outline-2">
+<h2 id="orgheadline5"><span class="section-number-2">5</span> Reverting a reverted commit in git</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+If you've reverted a recent commit with:
+</p>
+
+<p>
+<code>git reset HEAD^</code>
+</p>
+
+<p>
+You can undo the revert with this:
+</p>
+
+<p>
+<code>git reset HEAD@{1}</code>
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline6" class="outline-2">
+<h2 id="orgheadline6"><span class="section-number-2">6</span> Git stash:</h2>
+<div class="outline-text-2" id="text-6">
+<ul class="org-ul">
+<li>First do a <code>git add</code> (if its a new file to be tracked), then <code>git stash</code></li>
+<li>Check with <code>git stash list</code></li>
+<li>Reapply with <code>git stash apply</code></li>
+<li>Otherwise use <code>git stash pop</code> to recover the files and discard the stash</li>
+<li>Creating a branch from a stash:</li>
+</ul>
+<p>
+<code>git stash branch testchanges</code>
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline7" class="outline-2">
+<h2 id="orgheadline7"><span class="section-number-2">7</span> Git commits that aren't in master</h2>
+<div class="outline-text-2" id="text-7">
+<ul class="org-ul">
+<li>To see commits that have not yet merged to master:</li>
+</ul>
+<p>
+<code>git log --no-merges master..</code>
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline8" class="outline-2">
+<h2 id="orgheadline8"><span class="section-number-2">8</span> Stash: checkout a pull request</h2>
+<div class="outline-text-2" id="text-8">
+<ul class="org-ul">
+<li>From here: <a href="https://gist.github.com/hongymagic/6339056">https://gist.github.com/hongymagic/6339056</a></li>
+<li>Or just try this:</li>
+</ul>
+<p>
+<code>/usr/bin/git -c core.askpass=true fetch --tags --progress ssh://&lt;repository-url&gt; +refs/*:refs/remotes/</code>
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline9" class="outline-2">
+<h2 id="orgheadline9"><span class="section-number-2">9</span> Git rebase vs normal pull</h2>
+<div class="outline-text-2" id="text-9">
+<ul class="org-ul">
+<li>Instead of a normal pull, try this:</li>
+</ul>
+<p>
+<code>git pull --rebase origin master</code>
+</p>
+<ul class="org-ul">
+<li>'The <code>--rebase</code> option tells Git to move all of Mary's commits to the
+tip of the master branch after synchronising it with the changes
+from the central repository.'</li>
+<li>From here:
+<a href="https://www.atlassian.com/git/tutorials/comparing-workflows/centralized-workflow">https://www.atlassian.com/git/tutorials/comparing-workflows/centralized-workflow</a></li>
+<li>This removes the superfluous 'merge commit' that comes up normally.</li>
+<li>After fixing a merge conflict:</li>
+</ul>
+<p>
+<code>git add &lt;some-file&gt;</code>
+<code>git rebase --continue</code>
+</p>
+<ul class="org-ul">
+<li>To abort:</li>
+</ul>
+<p>
+<code>git rebase --abort</code>
+</p>
+<ul class="org-ul">
+<li>Finally:</li>
+</ul>
+<p>
+<code>git push origin master</code>
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline10" class="outline-2">
+<h2 id="orgheadline10"><span class="section-number-2">10</span> Git log on a file</h2>
+<div class="outline-text-2" id="text-10">
+<p>
+<code>git log -p filename</code>
+</p>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Arun S</p>
+<p class="date">Created: 2016-07-21 Thu 10:08</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

@@ -1,0 +1,96 @@
+#+OPTIONS: html-link-use-abs-url:nil html-postamble:auto
+#+OPTIONS: html-preamble:t html-scripts:t html-style:t
+#+OPTIONS: html5-fancy:nil tex:t
+#+HTML_DOCTYPE: xhtml-strict
+#+HTML_CONTAINER: div
+#+DESCRIPTION: git notes
+#+KEYWORDS: git, version control
+#+HTML_LINK_HOME:
+#+HTML_LINK_UP:
+#+HTML_MATHJAX:
+#+HTML_HEAD:
+#+HTML_HEAD_EXTRA:
+#+SUBTITLE:
+#+INFOJS_OPT:
+#+CREATOR: <a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.5.1 (<a href="http://orgmode.org">Org</a> mode 8.3.4)
+#+LATEX_HEADER:
+#+TITLE:     Git Notes
+#+AUTHOR:    Arun S
+#+EMAIL:     arun@indeliblestamp.com
+
+** Color coded git output
+=git config --global color.ui true=
+
+** Handling merge request in gitorious (and maybe others):
+- Changes will be pulled into a local branch for review. If the changes are approved they will be merged back to the master and pushed into the remote repository.
+- Check out a new branch for integration
+=git checkout -b merge-requests/1<code>=
+
+- Fetch the merge request into this branch
+=git pull git://gitorious.org/project/project.git refs/merge-requests/1=
+
+- Show the commits, assess they are okay
+=git log --pretty=oneline --abbrev-commit master..merge-requests/1</code>=
+
+- Apply the changes to your branch
+#+BEGIN_SRC sh
+git checkout master
+git merge merge-requests/1
+git push origin master
+#+END_SRC
+
+** If git has trouble getting code from github etc:
+=export GIT_SSL_NO_VERIFY=true=
+
+** Git objects:
+- Tree
+- Blob
+- Commit
+- Tag
+
+** Reverting a reverted commit in git
+If you've reverted a recent commit with:
+
+=git reset HEAD^=
+
+You can undo the revert with this:
+
+=git reset HEAD@{1}=
+
+** Git stash:
+- First do a =git add= (if its a new file to be tracked), then =git stash=
+- Check with =git stash list=
+- Reapply with =git stash apply=
+- Otherwise use =git stash pop= to recover the files and discard the stash
+- Creating a branch from a stash:
+=git stash branch testchanges=
+
+** Git commits that aren't in master
+- To see commits that have not yet merged to master:
+=git log --no-merges master..=
+
+** Stash: checkout a pull request
+- From here: https://gist.github.com/hongymagic/6339056
+- Or just try this:
+=/usr/bin/git -c core.askpass=true fetch --tags --progress ssh://<repository-url> +refs/*:refs/remotes/=
+
+** Git rebase vs normal pull
+- Instead of a normal pull, try this:
+=git pull --rebase origin master=
+- 'The =--rebase= option tells Git to move all of Mary's commits to the
+  tip of the master branch after synchronising it with the changes
+  from the central repository.'
+- From here:
+  https://www.atlassian.com/git/tutorials/comparing-workflows/centralized-workflow
+- This removes the superfluous 'merge commit' that comes up normally.
+- After fixing a merge conflict:
+=git add <some-file>=
+=git rebase --continue=
+- To abort:
+=git rebase --abort=
+- Finally:
+=git push origin master=
+
+** Git log on a file
+=git log -p filename=
+

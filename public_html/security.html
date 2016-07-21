@@ -1,0 +1,465 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2016-07-21 Thu 10:08 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="viewport" content="width=device-width, initial-scale=1" />
+<title>Security Notes</title>
+<meta  name="generator" content="Org-mode" />
+<meta  name="author" content="Arun S" />
+<meta  name="description" content="security notes"
+ />
+<meta  name="keywords" content="openssl, security, privacy, tls, selinux" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Security Notes</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgheadline1">1. Things that go in a certificate</a></li>
+<li><a href="#orgheadline2">2. Create a self signed certificate and key</a></li>
+<li><a href="#orgheadline3">3. selinux example:</a></li>
+<li><a href="#orgheadline4">4. decrypt an openssl key:</a></li>
+<li><a href="#orgheadline5">5. SELinux/Nginx error</a></li>
+<li><a href="#orgheadline6">6. SElinux Apache static html</a></li>
+<li><a href="#orgheadline7">7. Nmap one liners</a></li>
+<li><a href="#orgheadline8">8. Make a password in linux (without adding the user)</a></li>
+<li><a href="#orgheadline9">9. Open firewall ports in centos:</a></li>
+<li><a href="#orgheadline10">10. Centos firewall commands</a></li>
+<li><a href="#orgheadline11">11. ssh-agent</a></li>
+<li><a href="#orgheadline12">12. Apache redirect http to https</a></li>
+<li><a href="#orgheadline13">13. Letsencrypt notes</a></li>
+</ul>
+</div>
+</div>
+
+
+<div id="outline-container-orgheadline1" class="outline-2">
+<h2 id="orgheadline1"><span class="section-number-2">1</span> Things that go in a certificate</h2>
+<div class="outline-text-2" id="text-1">
+<div class="org-src-container">
+
+<pre class="src src-sh">Subject: CN     the certificate owner<span style="color: #9ccc65;">'s common name</span>
+<span style="color: #9ccc65;">Subject: E      the certificate owner'</span>s email address
+Subject: T      the certificate owner<span style="color: #9ccc65;">'s locality</span>
+<span style="color: #9ccc65;">Subject: ST     the certificate owner'</span>s state of residence
+Subject: O      the organization to which the certificate owner belongs
+Subject: OU     the name of the organizational unit to which the certificate owner belongs
+Subject: C      the certificate owner<span style="color: #9ccc65;">'s country of residence</span>
+<span style="color: #9ccc65;">Subject: STREET the certificate owner'</span>s street address
+Subject: ALL    the certificate owner<span style="color: #9ccc65;">'s complete distinguished name</span>
+<span style="color: #9ccc65;">Serial  the certificate'</span>s serial number
+SignatureAlg    the algorithm used by the Certificate Authority to sign the certificate
+BeginDate       the date at which the certificate becomes valid
+EndDate the date at which the certificate becomes invalid
+PublicKey       the certificate<span style="color: #9ccc65;">'s public key</span>
+<span style="color: #9ccc65;">FriendlyName    the certificate'</span>s friendly name
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline2" class="outline-2">
+<h2 id="orgheadline2"><span class="section-number-2">2</span> Create a self signed certificate and key</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+This is done as - 
+</p>
+<ul class="org-ul">
+<li>Create a private key - using RSA</li>
+</ul>
+<p>
+<code>openssl genrsa -out privkey.pem 1024</code>
+</p>
+<ul class="org-ul">
+<li>Create a self signed certificate</li>
+</ul>
+<p>
+<code>openssl req -new -x509 -key privkey.pem -out cacert.pem -days 1095</code>
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline3" class="outline-2">
+<h2 id="orgheadline3"><span class="section-number-2">3</span> selinux example:</h2>
+<div class="outline-text-2" id="text-3">
+<div class="org-src-container">
+
+<pre class="src src-sh">ls -Z file1
+-rwxrw-r-- user1 group1 unconfined_u:object_r:user_home_t:s0 file1
+</pre>
+</div>
+
+<ul class="org-ul">
+<li>SELinux contexts follow the SELinux user:role:type:level syntax.</li>
+<li>Use the <code>ps -eZ</code> command to view the SELinux context for processes</li>
+<li>and <code>id -Z</code> for users</li>
+<li><code>seinfo -r</code> (part of setools-console): shows all available user roles: such as guest, unconfined, webadm, sysadm, dbadm, etc.</li>
+</ul>
+<p>
+also see <code>/etc/selinux/targeted/context/users</code>
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline4" class="outline-2">
+<h2 id="orgheadline4"><span class="section-number-2">4</span> decrypt an openssl key:</h2>
+<div class="outline-text-2" id="text-4">
+<div class="org-src-container">
+
+<pre class="src src-sh">openssl rsa -in ssl.key -out decrypted.ssl.key 
+sudo cp ssl.crt /etc/ssl/certs/indeliblestamp.com.pem 
+sudo cp decrypted.ssl.key /etc/ssl/private/indeliblestamp.com.key
+sudo cp sub.class1.server.ca.pem /etc/ssl/certs/sub.class1.server.ca.pem
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline5" class="outline-2">
+<h2 id="orgheadline5"><span class="section-number-2">5</span> SELinux/Nginx error</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+<code>sudo cat /var/log/audit/audit.log | grep nginx | grep denied</code>
+shows something like this:
+<code>type=AVC msg=audit(1445306182.317:301): avc:  denied  { name_connect } for  pid=5939 comm</code>"nginx" dest=4374 scontext=system<sub>u</sub>:system<sub>r</sub>:httpd<sub>t</sub>:s0 tcontext=system<sub>u</sub>:object<sub>r</sub>:unreserved<sub>port</sub><sub>t</sub>:s0 tclass=tcp<sub>socket</sub>=
+</p>
+
+<p>
+Someone found that running the following commands fixed their issue:
+<code>sudo cat /var/log/audit/audit.log | grep nginx | grep denied | audit2allow -M mynginx</code>
+<code>sudo semodule -i mynginx.pp</code>
+Or something like this:
+<code>chcon -Rt httpd_sys_content_t /srv/www/myapp/</code>
+to change the security context of the directory recursively so nginx will be allowed to serve it.
+followed by:
+<code>setsebool -P httpd_can_network_connect 1</code>
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline6" class="outline-2">
+<h2 id="orgheadline6"><span class="section-number-2">6</span> SElinux Apache static html</h2>
+<div class="outline-text-2" id="text-6">
+<ul class="org-ul">
+<li>Change the context of the file:</li>
+</ul>
+<p>
+<code>sudo chcon -R -v -t httpd_sys_rw_content_t index.html</code>
+</p>
+<ul class="org-ul">
+<li>This might have happened because we copied a file from ~ to
+<code>/var/www</code>, which caused it to retain its original context.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgheadline7" class="outline-2">
+<h2 id="orgheadline7"><span class="section-number-2">7</span> Nmap one liners</h2>
+<div class="outline-text-2" id="text-7">
+<ul class="org-ul">
+<li>Port scan, os detection:</li>
+</ul>
+<p>
+<code>nmap -sS -P0 -sV -O 192.168.0.58</code>
+</p>
+<ul class="org-ul">
+<li>All active IPs in a network</li>
+</ul>
+<p>
+<code>nmap -sP 192.168.0.*</code>
+</p>
+<ul class="org-ul">
+<li>Ping a range of IPs</li>
+</ul>
+<p>
+<code>nmap -sP 192.168.0.2-254</code>
+</p>
+<ul class="org-ul">
+<li>Find unused IPs in a subnet</li>
+</ul>
+<p>
+<code>nmap -T4 -sP 192.168.0.0/24 &amp;&amp; egrep "00:00:00:00:00:00" /proc/net/arp</code>
+</p>
+</div>
+</div>
+<div id="outline-container-orgheadline8" class="outline-2">
+<h2 id="orgheadline8"><span class="section-number-2">8</span> Make a password in linux (without adding the user)</h2>
+<div class="outline-text-2" id="text-8">
+<ul class="org-ul">
+<li><code>whois</code> package: provides <code>mkpasswd</code></li>
+</ul>
+<p>
+<code>mkpasswd --method=SHA-512</code>
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-orgheadline9" class="outline-2">
+<h2 id="orgheadline9"><span class="section-number-2">9</span> Open firewall ports in centos:</h2>
+<div class="outline-text-2" id="text-9">
+<p>
+<code>firewall-cmd --permanent --add-port=5672/tcp</code>
+</p>
+
+<p>
+<code>firewall-cmd --reload</code>
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline10" class="outline-2">
+<h2 id="orgheadline10"><span class="section-number-2">10</span> Centos firewall commands</h2>
+<div class="outline-text-2" id="text-10">
+<div class="org-src-container">
+
+<pre class="src src-sh">firewall-cmd --state
+firewall-cmd --get-zones
+firewall-cmd --list-all-zones
+firewall-cmd --get-default-zone
+firewall-cmd --list-services  <span style="color: #b0bec5;"># </span><span style="color: #b0bec5;">currently enabled in this zone</span>
+firewall-cmd --get-services   <span style="color: #b0bec5;"># </span><span style="color: #b0bec5;">all</span>
+firewall-cmd --add-service=https --permanent
+firewall-cmd --add-service=http --permanent
+</pre>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-orgheadline11" class="outline-2">
+<h2 id="orgheadline11"><span class="section-number-2">11</span> ssh-agent</h2>
+<div class="outline-text-2" id="text-11">
+<ul class="org-ul">
+<li>You start an ssh-agent by running something like:</li>
+</ul>
+<p>
+<code>eval `ssh-agent`</code>
+</p>
+<ul class="org-ul">
+<li>You can then feed it keys, with ssh-add like this:</li>
+</ul>
+<p>
+<code>ssh-add /home/test/.ssh/id_rsa</code>
+or, if your key is in the default location, you can just do:
+<code>ssh-add</code>
+</p>
+
+<p>
+or just put this in <code>.bashrc</code>:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh"><span style="color: #fff59d;">if</span> [ -z <span style="color: #9ccc65;">"$SSH_AUTH_SOCK"</span> ] ; <span style="color: #fff59d;">then</span>
+  <span style="color: #ff8A65;">eval</span> <span style="color: #ffd700;">`ssh-agent -s`</span>
+  ssh-add
+<span style="color: #fff59d;">fi</span>
+</pre>
+</div>
+<p>
+but this prompts for the passphrase the first time it is invoked. so do this instead:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-sh"><span style="color: #b0bec5;">#</span><span style="color: #b0bec5;">!/usr/bin/</span><span style="color: #fff59d;">expect</span><span style="color: #b0bec5;"> -f</span>
+spawn ssh-add /home/user/.ssh/id_rsa
+expect <span style="color: #9ccc65;">"Enter passphrase for /home/user/.ssh/id_rsa:"</span>
+send <span style="color: #9ccc65;">"passphrase\n"</span>;
+interact
+</pre>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-orgheadline12" class="outline-2">
+<h2 id="orgheadline12"><span class="section-number-2">12</span> Apache redirect http to https</h2>
+<div class="outline-text-2" id="text-12">
+<div class="org-src-container">
+
+<pre class="src src-sh">NameVirtualHost *:80
+&lt;VirtualHost *:80&gt;
+   ServerName mysite.example.com
+   DocumentRoot /usr/local/apache2/htdocs 
+   Redirect permanent / https://mysite.example.com/
+&lt;/VirtualHost&gt;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline13" class="outline-2">
+<h2 id="orgheadline13"><span class="section-number-2">13</span> Letsencrypt notes</h2>
+<div class="outline-text-2" id="text-13">
+<div class="org-src-container">
+
+<pre class="src src-sh">sudo dnf install httpd -y
+sudo dnf install mod_ssl -y
+sudo systemctl start httpd
+sudo systemctl enable httpd
+</pre>
+</div>
+<ul class="org-ul">
+<li>Add <code>ServerName</code> and a <code>VirtualHost</code> at a minimum</li>
+<li>now run <code>letsencrypt-auto</code> and fill out the stuff</li>
+</ul>
+<div class="org-src-container">
+
+<pre class="src src-sh">sudo cp /etc/letsencrypt/options-ssl-apache.conf /etc/httpd/conf.d
+sudo systemctl restart httpd
+</pre>
+</div>
+
+<ul class="org-ul">
+<li>To renew:</li>
+</ul>
+<p>
+<code>letsencrypt-auto renew</code>
+</p>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Arun S</p>
+<p class="date">Created: 2016-07-21 Thu 10:08</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

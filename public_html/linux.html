@@ -1,0 +1,1262 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2016-07-21 Thu 10:08 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="viewport" content="width=device-width, initial-scale=1" />
+<title>Linux Notes</title>
+<meta  name="generator" content="Org-mode" />
+<meta  name="author" content="Arun S" />
+<meta  name="description" content="linux notes"
+ />
+<meta  name="keywords" content="linux, fedora, administration, sysadmin, centos, gnu" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        displayAlign: "center",
+        displayIndent: "0em",
+
+        "HTML-CSS": { scale: 100,
+                        linebreaks: { automatic: "false" },
+                        webFont: "TeX"
+                       },
+        SVG: {scale: 100,
+              linebreaks: { automatic: "false" },
+              font: "TeX"},
+        NativeMML: {scale: 100},
+        TeX: { equationNumbers: {autoNumber: "AMS"},
+               MultLineWidth: "85%",
+               TagSide: "right",
+               TagIndent: ".8em"
+             }
+});
+</script>
+<script type="text/javascript"
+        src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Linux Notes</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgheadline26">1. Linux notes</a>
+<ul>
+<li><a href="#orgheadline1">1.1. ccache notes</a></li>
+<li><a href="#orgheadline2">1.2. Change timezone in centos:</a></li>
+<li><a href="#orgheadline3">1.3. Install fonts in centos/linux:</a></li>
+<li><a href="#orgheadline4">1.4. Linux date conversion (epoch to human readable)</a></li>
+<li><a href="#orgheadline5">1.5. Howto add swap space:</a></li>
+<li><a href="#orgheadline6">1.6. Disable firefox's verification of extension signing</a></li>
+<li><a href="#orgheadline7">1.7. If df shows no disk space even after deleting files, check this output:</a></li>
+<li><a href="#orgheadline8">1.8. Useful linux diagnostic commands:</a></li>
+<li><a href="#orgheadline9">1.9. GNU/Screen scrollback:</a></li>
+<li><a href="#orgheadline10">1.10. Quick fsck (solaris)</a></li>
+<li><a href="#orgheadline11">1.11. Debian - clean up orphaned files:</a></li>
+<li><a href="#orgheadline12">1.12. See filesystem usage:</a></li>
+<li><a href="#orgheadline13">1.13. GNU/Screen splitting windows</a></li>
+<li><a href="#orgheadline14">1.14. Tmux keybindings</a></li>
+<li><a href="#orgheadline15">1.15. Colour in terminals</a></li>
+<li><a href="#orgheadline16">1.16. Bash Stty: Coredump etc</a></li>
+<li><a href="#orgheadline17">1.17. Fix for xargs errors when filenames contain spaces</a></li>
+<li><a href="#orgheadline18">1.18. Bash faster navigation with cdpath</a></li>
+<li><a href="#orgheadline19">1.19. Find with date filters</a></li>
+<li><a href="#orgheadline20">1.20. File formatting, wrapping etc</a></li>
+<li><a href="#orgheadline21">1.21. Deleting files with odd names</a></li>
+<li><a href="#orgheadline22">1.22. See whitespace with cat</a></li>
+<li><a href="#orgheadline23">1.23. Stat command: see inode information</a></li>
+<li><a href="#orgheadline24">1.24. Bash debugging</a></li>
+<li><a href="#orgheadline25">1.25. Bash suppress echo (for reading passwords)</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline29">2. Systemd</a>
+<ul>
+<li><a href="#orgheadline27">2.1. Flush old logs in journalctl</a></li>
+<li><a href="#orgheadline28">2.2. Tail journalctl</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline34">3. Package management</a>
+<ul>
+<li><a href="#orgheadline30">3.1. Sort RPMs by size</a></li>
+<li><a href="#orgheadline31">3.2. Extract rpm into current folder instead of installing:</a></li>
+<li><a href="#orgheadline32">3.3. Trace a binary or file to the RPM that installed it:</a></li>
+<li><a href="#orgheadline33">3.4. Yum/dnf revert</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline39">4. Networking</a>
+<ul>
+<li><a href="#orgheadline35">4.1. Curl tips</a></li>
+<li><a href="#orgheadline36">4.2. If more than 10 telnet sessions to a server fail, check this flag:</a></li>
+<li><a href="#orgheadline37">4.3. Start xinetd with debugs turned on:</a></li>
+<li><a href="#orgheadline38">4.4. Check duplicate ip with arping</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline47">5. Editors</a>
+<ul>
+<li><a href="#orgheadline43">5.1. Org-mode Keybindings</a>
+<ul>
+<li><a href="#orgheadline40">5.1.1. Basic keybindings</a></li>
+<li><a href="#orgheadline41">5.1.2. Checkboxes <code>[2/3]</code></a></li>
+<li><a href="#orgheadline42">5.1.3. Publishing/Exporting</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline44">5.2. Org-mode code blocks</a></li>
+<li><a href="#orgheadline45">5.3. Set font in gvim permanently:</a></li>
+<li><a href="#orgheadline46">5.4. Vim tips:</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline51">6. Databases</a>
+<ul>
+<li><a href="#orgheadline48">6.1. Postgreql quickstart</a></li>
+<li><a href="#orgheadline49">6.2. MySql quick start</a></li>
+<li><a href="#orgheadline50">6.3. Sqlite basics:</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline63">7. Learnings/Notes</a>
+<ul>
+<li><a href="#orgheadline52">7.1. Docker Notes:</a></li>
+<li><a href="#orgheadline56">7.2. Vagrant notes:</a>
+<ul>
+<li><a href="#orgheadline53">7.2.1. setup:</a></li>
+<li><a href="#orgheadline54">7.2.2. start:</a></li>
+<li><a href="#orgheadline55">7.2.3. stop:</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline57">7.3. Ansible notes</a></li>
+<li><a href="#orgheadline58">7.4. Linux ad-hoc daemonization</a></li>
+<li><a href="#orgheadline59">7.5. linux ctime vs mtime</a></li>
+<li><a href="#orgheadline62">7.6. soft vs hard links</a>
+<ul>
+<li><a href="#orgheadline60">7.6.1. Hard links:</a></li>
+<li><a href="#orgheadline61">7.6.2. Soft links:</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgheadline26" class="outline-2">
+<h2 id="orgheadline26"><span class="section-number-2">1</span> Linux notes</h2>
+<div class="outline-text-2" id="text-1">
+</div><div id="outline-container-orgheadline1" class="outline-3">
+<h3 id="orgheadline1"><span class="section-number-3">1.1</span> ccache notes</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+Install from the repo as usual
+</p>
+
+<p>
+<code>sudo yum install ccache -y</code>
+</p>
+
+<p>
+One way to set it up:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-sh">bash-4.2 /bin$ cp ccache /usr/local/bin/
+bash-4.2 /bin$ ln -s ccache /usr/local/bin/gcc
+bash-4.2 /bin$ ln -s ccache /usr/local/bin/g++
+bash-4.2 /bin$ ln -s ccache /usr/local/bin/cc
+bash-4.2 /bin$ ln -s ccache /usr/local/bin/c++
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline2" class="outline-3">
+<h3 id="orgheadline2"><span class="section-number-3">1.2</span> Change timezone in centos:</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+<code>ln -s /usr/share/zoneinfo/Asia/Kolkata /etc/localtime</code>
+</p>
+
+<p>
+For debian:
+</p>
+
+<p>
+<code>timedatectl set-timezone Asia/Kolkata</code>
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline3" class="outline-3">
+<h3 id="orgheadline3"><span class="section-number-3">1.3</span> Install fonts in centos/linux:</h3>
+<div class="outline-text-3" id="text-1-3">
+<p>
+System-wide : 
+</p>
+
+<p>
+<code>mkdir -p /usr/share/fonts/greatvibes</code>
+</p>
+
+<p>
+User only : 
+</p>
+
+<p>
+<code>mkdir ~/.fonts</code>
+</p>
+
+<p>
+Copy your font files in the appropriate folder and "register" them in the system with:
+</p>
+
+<p>
+<code>fc-cache -f -v</code>
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline4" class="outline-3">
+<h3 id="orgheadline4"><span class="section-number-3">1.4</span> Linux date conversion (epoch to human readable)</h3>
+<div class="outline-text-3" id="text-1-4">
+<p>
+Convert epoch time to human readable format:
+</p>
+
+<p>
+<code>date -d @1445305686.222</code>
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline5" class="outline-3">
+<h3 id="orgheadline5"><span class="section-number-3">1.5</span> Howto add swap space:</h3>
+<div class="outline-text-3" id="text-1-5">
+<div class="org-src-container">
+
+<pre class="src src-sh">free
+dd <span style="color: #ffcc80;">if</span>=/dev/zero <span style="color: #ffcc80;">of</span>=/var/swap.img <span style="color: #ffcc80;">bs</span>=1024k <span style="color: #ffcc80;">count</span>=1000
+mkswap /var/swap.img
+swapon /var/swap.img
+free
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgheadline6" class="outline-3">
+<h3 id="orgheadline6"><span class="section-number-3">1.6</span> Disable firefox's verification of extension signing</h3>
+<div class="outline-text-3" id="text-1-6">
+<p>
+<code>xpinstall.signatures.required</code> in <code>about:config</code>
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline7" class="outline-3">
+<h3 id="orgheadline7"><span class="section-number-3">1.7</span> If df shows no disk space even after deleting files, check this output:</h3>
+<div class="outline-text-3" id="text-1-7">
+<p>
+<code>sudo /usr/sbin/lsof | grep deleted</code>
+</p>
+
+<ul class="org-ul">
+<li>Space will not be freed for the files there.</li>
+<li>Restart those offending daemons to actually free the space up.</li>
+</ul>
+
+<p>
+If you don't have lsof, just use this:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-sh">find /proc/*/fd -ls | grep  <span style="color: #9ccc65;">'(deleted)'</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline8" class="outline-3">
+<h3 id="orgheadline8"><span class="section-number-3">1.8</span> Useful linux diagnostic commands:</h3>
+<div class="outline-text-3" id="text-1-8">
+<div class="org-src-container">
+
+<pre class="src src-sh">uptime
+dmesg | tail
+vmstat 1
+mpstat -P ALL 1
+pidstat 1
+iostat -xz 1
+free -m
+sar -n DEV 1
+sar -n TCP,ETCP 1
+top
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline9" class="outline-3">
+<h3 id="orgheadline9"><span class="section-number-3">1.9</span> GNU/Screen scrollback:</h3>
+<div class="outline-text-3" id="text-1-9">
+<p>
+<code>Ctrl a Esc</code>
+(then use <code>Ctrl b/Ctrl f/Ctrl u/Ctrl d</code> etc)
+and <code>Esc</code> to end
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline10" class="outline-3">
+<h3 id="orgheadline10"><span class="section-number-3">1.10</span> Quick fsck (solaris)</h3>
+<div class="outline-text-3" id="text-1-10">
+<p>
+<code>fsck -Fy ufs /dev/rdsk/c1d0s5</code>
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline11" class="outline-3">
+<h3 id="orgheadline11"><span class="section-number-3">1.11</span> Debian - clean up orphaned files:</h3>
+<div class="outline-text-3" id="text-1-11">
+<p>
+<code>aptitude  remove --purge $(deborphan)</code>
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline12" class="outline-3">
+<h3 id="orgheadline12"><span class="section-number-3">1.12</span> See filesystem usage:</h3>
+<div class="outline-text-3" id="text-1-12">
+<p>
+<code>/usr/bin/du --total --summarize --human-readable --one-file-system</code>
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline13" class="outline-3">
+<h3 id="orgheadline13"><span class="section-number-3">1.13</span> GNU/Screen splitting windows</h3>
+<div class="outline-text-3" id="text-1-13">
+<ul class="org-ul">
+<li><code>C-a V or C-a |</code>     split the screen vertically</li>
+<li><code>C-a X</code>              remove/detach the current split</li>
+<li><code>C-a S</code>              split horizontally</li>
+<li><code>C-a tab</code>            cycle between windows</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgheadline14" class="outline-3">
+<h3 id="orgheadline14"><span class="section-number-3">1.14</span> Tmux keybindings</h3>
+<div class="outline-text-3" id="text-1-14">
+<ul class="org-ul">
+<li><code>Ctrl-b %</code> (Split the window vertically)</li>
+<li><code>Ctrl-b :</code> "split-window" (Split window horizontally)</li>
+<li><code>Ctrl-b o</code> (Goto next pane)</li>
+<li><code>Ctrl-b q</code> (Show pane numbers, when the numbers show up type the key to goto that pane)</li>
+<li><code>Ctrl-b {</code> (Move the current pane left)</li>
+<li><code>Ctrl-b }</code> (Move the current pane right)</li>
+</ul>
+
+<p>
+And here's my .tmux.conf
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh"><span style="color: #ff8A65;">set</span> -g prefix C-a
+unbind C-b
+bind C-a send-prefix
+
+<span style="color: #ff8A65;">set</span> -g default-terminal <span style="color: #9ccc65;">"xterm-256color"</span>
+
+<span style="color: #ff8A65;">set</span> -g history-limit 10000
+<span style="color: #ff8A65;">set</span> -g set-titles-string <span style="color: #9ccc65;">"#T"</span>
+
+unbind %
+bind | split-window -h
+bind - split-window -v
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline15" class="outline-3">
+<h3 id="orgheadline15"><span class="section-number-3">1.15</span> Colour in terminals</h3>
+<div class="outline-text-3" id="text-1-15">
+<div class="org-src-container">
+
+<pre class="src src-sh">arunsrin@ARUNSRIN-G2CA5 MINGW64 ~
+$ printf <span style="color: #9ccc65;">"\033[32mhi\033[0m"</span>
+hi
+</pre>
+</div>
+
+<ul class="org-ul">
+<li><code>\033</code> is Escape</li>
+<li>So <code>Escape + 3 + 2 + m</code> tells the terminal that everything from this
+point onwards is in green.</li>
+<li>And <code>Escape + [ + 0 + m</code> reverts it back to normal</li>
+
+<li>These are some sequences:</li>
+</ul>
+<div class="org-src-container">
+
+<pre class="src src-sh">Sequence What it Does
+ESC[1m Bold, intensify foreground
+ESC[4m Underscore
+ESC[5m Blink
+ESC[7m Reverse video
+ESC[0m All attributes off
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline16" class="outline-3">
+<h3 id="orgheadline16"><span class="section-number-3">1.16</span> Bash Stty: Coredump etc</h3>
+<div class="outline-text-3" id="text-1-16">
+<p>
+<code>Ctrl \</code>
+</p>
+<ul class="org-ul">
+<li>Override it with</li>
+<li><code>stty quit &lt;some-binding&gt;</code></li>
+<li>similarly for that age-old backspace not deleting a character problem:</li>
+<li><code>stty erase ^h</code></li>
+<li>To see the current terminal capabilities, run:</li>
+<li><code>stty -a</code></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgheadline17" class="outline-3">
+<h3 id="orgheadline17"><span class="section-number-3">1.17</span> Fix for xargs errors when filenames contain spaces</h3>
+<div class="outline-text-3" id="text-1-17">
+<ul class="org-ul">
+<li><code>find</code> has a print0 option that uses null characters instead of \n as separators.</li>
+<li><code>xargs</code> has a -0 option that uses the same separator when working on the args. So:</li>
+</ul>
+<p>
+<code>find . -name -print0 | xargs -0 ls -l</code>
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline18" class="outline-3">
+<h3 id="orgheadline18"><span class="section-number-3">1.18</span> Bash faster navigation with cdpath</h3>
+<div class="outline-text-3" id="text-1-18">
+<div class="org-src-container">
+
+<pre class="src src-sh"><span style="color: #ff8A65;">export</span> <span style="color: #ffcc80;">CDPATH</span>=:$<span style="color: #ffcc80;">HOME</span>:$<span style="color: #ffcc80;">HOME</span>/projects:$<span style="color: #ffcc80;">HOME</span>/code/beech
+</pre>
+</div>
+<ul class="org-ul">
+<li>cd'ing to a folder first looks at CWD, then rest of CDPATH</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgheadline19" class="outline-3">
+<h3 id="orgheadline19"><span class="section-number-3">1.19</span> Find with date filters</h3>
+<div class="outline-text-3" id="text-1-19">
+<ul class="org-ul">
+<li><code>find . -ctime -3</code> # created in the past 3 days</li>
+<li><code>find . -ctime +3</code> # older than 3 days</li>
+<li><code>find . -ctime 3</code> # created exactly 3 days back</li>
+<li><code>find . -ctime +3 -ctime -5</code> # created 3 - 5 days back</li>
+<li><code>find . -newer /tmp/somefile</code> # see somefile's timestamp and show files newer than it</li>
+<li>works great in conjunction with:</li>
+<li><code>touch 0607090016 /tmp/somefile</code> #i.e. 7th june, 9:00 am, 2016</li>
+
+<li>don't use atime much: every directory access changes its atime, so when find traverses through it, the inode's atime entry gets updated.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgheadline20" class="outline-3">
+<h3 id="orgheadline20"><span class="section-number-3">1.20</span> File formatting, wrapping etc</h3>
+<div class="outline-text-3" id="text-1-20">
+<ul class="org-ul">
+<li>huh, who knew this existed:</li>
+</ul>
+
+<p>
+<code>cat &lt;some-verbose-output&gt; | fold -70</code>
+</p>
+
+<ul class="org-ul">
+<li><code>fold -s</code> folds at whitespace</li>
+
+<li>Also look at the <code>fmt</code> command, which seems similar to emacs'
+<code>fill-paragraph</code>.</li>
+
+<li><code>pr</code> gives a pretty display with margins, headers, and page numbers.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgheadline21" class="outline-3">
+<h3 id="orgheadline21"><span class="section-number-3">1.21</span> Deleting files with odd names</h3>
+<div class="outline-text-3" id="text-1-21">
+<ul class="org-ul">
+<li>There's more than one way. Here's one: find the inode with <code>ls -i</code>,
+then delete with:</li>
+</ul>
+
+<p>
+<code>find -inum &lt;inode-number&gt; -exec rm -i {} \;</code>
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline22" class="outline-3">
+<h3 id="orgheadline22"><span class="section-number-3">1.22</span> See whitespace with cat</h3>
+<div class="outline-text-3" id="text-1-22">
+<ul class="org-ul">
+<li>use this:</li>
+</ul>
+
+<p>
+<code>cat -v -t -e &lt;somefile&gt;</code>
+</p>
+
+<ul class="org-ul">
+<li><code>-e</code>: Add a trailing <code>$</code> at the end of a line.</li>
+<li><code>-t</code>: Show tabs as <code>^I</code></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgheadline23" class="outline-3">
+<h3 id="orgheadline23"><span class="section-number-3">1.23</span> Stat command: see inode information</h3>
+<div class="outline-text-3" id="text-1-23">
+<ul class="org-ul">
+<li>The inode holds the address in the filesystem, access permissions,
+ctime/mtime etc</li>
+</ul>
+<div class="org-src-container">
+
+<pre class="src src-sh">arunsrin@ARUNSRIN-G2CA5 MINGW64 ~
+$ stat ntuser.ini
+  File: &#8216;ntuser.ini&#8217;
+  Size: 20              Blocks: 1          IO Block: 65536  regular file
+Device: a4b221d6h/2763137494d   Inode: 562949953421373  Links: 1
+Access: (0644/-rw-r--r--)  Uid: (1233064/arunsrin)   Gid: (1049089/ UNKNOWN)
+Access: 2015-07-21 18:57:13.142410100 +0530
+Modify: 2010-11-21 08:20:53.336035000 +0530
+Change: 2016-06-06 09:18:05.239486700 +0530
+ Birth: 2015-07-21 18:57:13.142410100 +0530
+
+arunsrin@ARUNSRIN-G2CA5 MINGW64 ~
+$
+</pre>
+</div>
+
+<ul class="org-ul">
+<li>If the filename is odd and you can't paste it easily in the terminal, just try</li>
+</ul>
+<p>
+<code>ls -il</code>
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline24" class="outline-3">
+<h3 id="orgheadline24"><span class="section-number-3">1.24</span> Bash debugging</h3>
+<div class="outline-text-3" id="text-1-24">
+<ul class="org-ul">
+<li>Run the script with <code>-xv</code> in the shebang:</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-sh"><span style="color: #b0bec5;">#</span><span style="color: #b0bec5;">!/bin/</span><span style="color: #fff59d;">bash</span><span style="color: #b0bec5;"> -xv</span>
+<span style="color: #b0bec5;"># </span><span style="color: #b0bec5;">do something</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline25" class="outline-3">
+<h3 id="orgheadline25"><span class="section-number-3">1.25</span> Bash suppress echo (for reading passwords)</h3>
+<div class="outline-text-3" id="text-1-25">
+<p>
+In bash, while reading input from the user, if you want to suppress
+the echo on the screen (for sensitive inputs like passwords), do this:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-sh">stty -echo
+<span style="color: #ff8A65;">read</span> SECRETPASSWD
+stty echo
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline29" class="outline-2">
+<h2 id="orgheadline29"><span class="section-number-2">2</span> Systemd</h2>
+<div class="outline-text-2" id="text-2">
+</div><div id="outline-container-orgheadline27" class="outline-3">
+<h3 id="orgheadline27"><span class="section-number-3">2.1</span> Flush old logs in journalctl</h3>
+<div class="outline-text-3" id="text-2-1">
+<ul class="org-ul">
+<li>By date or by size:</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-sh">sudo journalctl --vacuum-time=2d
+sudo journalctl --vacuum-size=500M
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline28" class="outline-3">
+<h3 id="orgheadline28"><span class="section-number-3">2.2</span> Tail journalctl</h3>
+<div class="outline-text-3" id="text-2-2">
+<ul class="org-ul">
+<li><code>journalctl -f</code></li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline34" class="outline-2">
+<h2 id="orgheadline34"><span class="section-number-2">3</span> Package management</h2>
+<div class="outline-text-2" id="text-3">
+</div><div id="outline-container-orgheadline30" class="outline-3">
+<h3 id="orgheadline30"><span class="section-number-3">3.1</span> Sort RPMs by size</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+<code>rpm -qa --queryformat '%{size} %{name}\n' | sort -rn | more</code>
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline31" class="outline-3">
+<h3 id="orgheadline31"><span class="section-number-3">3.2</span> Extract rpm into current folder instead of installing:</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+<code>rpm2cpio boost-system-1.53.0-23.el7.x86_64.rpm | cpio -idmv</code>
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline32" class="outline-3">
+<h3 id="orgheadline32"><span class="section-number-3">3.3</span> Trace a binary or file to the RPM that installed it:</h3>
+<div class="outline-text-3" id="text-3-3">
+<p>
+<code>yum whatprovides /usr/lib64/libdbus-c++-1.so.0</code>
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline33" class="outline-3">
+<h3 id="orgheadline33"><span class="section-number-3">3.4</span> Yum/dnf revert</h3>
+<div class="outline-text-3" id="text-3-4">
+<ul class="org-ul">
+<li>if a yum remove wiped out several packages, do this:</li>
+<li><code>dnf history</code> # note the id of the bad removal here</li>
+<li><code>dnf history undo 96</code></li>
+<li>yum/dnf will reinstall all the packages that were removed in that id.</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline39" class="outline-2">
+<h2 id="orgheadline39"><span class="section-number-2">4</span> Networking</h2>
+<div class="outline-text-2" id="text-4">
+</div><div id="outline-container-orgheadline35" class="outline-3">
+<h3 id="orgheadline35"><span class="section-number-3">4.1</span> Curl tips</h3>
+<div class="outline-text-3" id="text-4-1">
+<ul class="org-ul">
+<li>Show headers with <code>-I</code> and change request type with <code>-X</code>. e.g.</li>
+</ul>
+
+<p>
+<code>curl -I -X DELETE  http://localhost/blah</code>
+</p>
+
+<ul class="org-ul">
+<li>To add a header in the outgoing request, use <code>-H</code>:</li>
+</ul>
+
+<p>
+<code>curl --header "X-MyHeader: 123" www.google.com</code>
+</p>
+
+<ul class="org-ul">
+<li>Follow redirects with <code>-l</code></li>
+<li>Disable security check with <code>-k</code></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgheadline36" class="outline-3">
+<h3 id="orgheadline36"><span class="section-number-3">4.2</span> If more than 10 telnet sessions to a server fail, check this flag:</h3>
+<div class="outline-text-3" id="text-4-2">
+<p>
+<code>per_source = 10</code>
+in <code>/etc/xinetd.d/telnet</code> or <code>/etc/xinetd.conf</code>
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline37" class="outline-3">
+<h3 id="orgheadline37"><span class="section-number-3">4.3</span> Start xinetd with debugs turned on:</h3>
+<div class="outline-text-3" id="text-4-3">
+<p>
+<code>/usr/sbin/xinetd -f /etc/xinetd.conf -d</code>
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline38" class="outline-3">
+<h3 id="orgheadline38"><span class="section-number-3">4.4</span> Check duplicate ip with arping</h3>
+<div class="outline-text-3" id="text-4-4">
+<div class="org-src-container">
+
+<pre class="src src-sh">bash-4.2 ~$ arping 192.168.0.58 -D -c 3 -I ens32
+ARPING 192.168.0.58 from 0.0.0.0 ens32
+Unicast reply from 192.168.0.58 [18:E7:28:2E:92:9C]  1.747ms
+Sent 1 probes (1 broadcast(s))
+Received 1 response(s)
+bash-4.2 ~$ echo $<span style="color: #ffcc80;">?</span>
+1
+bash-4.2 ~$
+</pre>
+</div>
+
+<ul class="org-ul">
+<li>exit status of 0 confirms a duplicate ip</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline47" class="outline-2">
+<h2 id="orgheadline47"><span class="section-number-2">5</span> Editors</h2>
+<div class="outline-text-2" id="text-5">
+</div><div id="outline-container-orgheadline43" class="outline-3">
+<h3 id="orgheadline43"><span class="section-number-3">5.1</span> Org-mode Keybindings</h3>
+<div class="outline-text-3" id="text-5-1">
+</div><div id="outline-container-orgheadline40" class="outline-4">
+<h4 id="orgheadline40"><span class="section-number-4">5.1.1</span> Basic keybindings</h4>
+<div class="outline-text-4" id="text-5-1-1">
+<ul class="org-ul">
+<li><code>C-c C-n</code> and <code>C-c C-p</code> to cycle between headings.</li>
+<li><code>TAB</code> on a heading to expand/collapse.</li>
+<li><code>M-up</code> and <code>M-down</code> to reorder sections.</li>
+<li><code>M-left</code> and <code>M-right</code> to change the level of a heading.</li>
+<li><code>M-RET</code> inside a list to create a new bullet.
+<ul class="org-ul">
+<li><code>TAB</code> in a new bullet to indent it.</li>
+<li><code>S-left</code> and <code>S-right</code> to change the bullet-style.</li>
+</ul></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgheadline41" class="outline-4">
+<h4 id="orgheadline41"><span class="section-number-4">5.1.2</span> Checkboxes <code>[2/3]</code></h4>
+<div class="outline-text-4" id="text-5-1-2">
+<ul class="org-ul">
+<li class="off"><code>[&#xa0;]</code> <code>M-S-RET</code> gives a checkbox.</li>
+<li class="on"><code>[X]</code> <code>C-c C-c</code> checks it.
+<ul class="org-ul">
+<li class="on"><code>[X]</code> <code>TAB</code> for subdivisions.</li>
+<li class="on"><code>[X]</code> When all subtasks are checked, so is the main one.</li>
+</ul></li>
+<li class="on"><code>[X]</code> A trailing [] in the line preceding a list of checkboxes contains a summary (2/3 in this case).</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgheadline42" class="outline-4">
+<h4 id="orgheadline42"><span class="section-number-4">5.1.3</span> Publishing/Exporting</h4>
+<div class="outline-text-4" id="text-5-1-3">
+<ul class="org-ul">
+<li><code>C-c C-e</code> for everything. 
+<ul class="org-ul">
+<li><code>h o</code> exports to html.</li>
+<li><code>#</code> brings up common templates.</li>
+</ul></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-orgheadline44" class="outline-3">
+<h3 id="orgheadline44"><span class="section-number-3">5.2</span> Org-mode code blocks</h3>
+<div class="outline-text-3" id="text-5-2">
+<ul class="org-ul">
+<li>Awk, C, R, Asymptote, Calc, Clojure, CSS, Ditaa, Dot, Emacs Lisp,
+Forth, Fortran, Gnuplot, Haskell, IO, J, Java, Javascript, LaTeX,
+Ledger, Lilypond, Lisp, Makefile, Maxima, Matlab, Mscgen, Ocaml,
+Octave, Org, Perl, Pico Lisp, PlantUML, Python, Ruby, Sass, Scala,
+Scheme, Screen, sh, Shen, Sql, Sqlite, ebnf2ps.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgheadline45" class="outline-3">
+<h3 id="orgheadline45"><span class="section-number-3">5.3</span> Set font in gvim permanently:</h3>
+<div class="outline-text-3" id="text-5-3">
+<ul class="org-ul">
+<li>Change it for the current session and verify what it is set as with this:</li>
+</ul>
+<p>
+<code>:set guifont?</code>
+</p>
+<ul class="org-ul">
+<li>Copy the string and add it to .vimrc like so:</li>
+</ul>
+<p>
+<code>set guifont=Hack:h9:cANSI</code>
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline46" class="outline-3">
+<h3 id="orgheadline46"><span class="section-number-3">5.4</span> Vim tips:</h3>
+<div class="outline-text-3" id="text-5-4">
+<ul class="org-ul">
+<li>delete trailing whitespace:</li>
+</ul>
+<p>
+<code>:%s: *$::</code>
+</p>
+<ul class="org-ul">
+<li>pull onto search line:</li>
+</ul>
+<p>
+<code>/ CtrlR CtrlW</code>
+</p>
+<ul class="org-ul">
+<li>open file name under cursor:</li>
+</ul>
+<p>
+<code>gf</code>
+</p>
+<ul class="org-ul">
+<li>increment/decrement number under cursor:</li>
+</ul>
+<p>
+<code>CtrlA/CtrlX</code>
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline51" class="outline-2">
+<h2 id="orgheadline51"><span class="section-number-2">6</span> Databases</h2>
+<div class="outline-text-2" id="text-6">
+</div><div id="outline-container-orgheadline48" class="outline-3">
+<h3 id="orgheadline48"><span class="section-number-3">6.1</span> Postgreql quickstart</h3>
+<div class="outline-text-3" id="text-6-1">
+<div class="org-src-container">
+
+<pre class="src src-sh">sudo -i -u postgres
+postgresql quickstart
+createuser --interactive
+createdb ttrssdb
+psql
+&gt;alter user ttrssuser with encrypted password <span style="color: #9ccc65;">'blah'</span>;
+&gt;grant all privileges on database ttrssdb to ttrssuser;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline49" class="outline-3">
+<h3 id="orgheadline49"><span class="section-number-3">6.2</span> MySql quick start</h3>
+<div class="outline-text-3" id="text-6-2">
+<div class="org-src-container">
+
+<pre class="src src-Sql">mysql&gt; create database habari;
+Query OK, 1 row affected (0.02 sec)
+
+mysql&gt; grant all on habari.* to 'habariuser'@'localhost' identified by 'blah';
+Query OK, 0 rows affected (0.06 sec)
+
+mysql&gt; flush privileges;
+Query OK, 0 rows affected (0.00 sec)
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline50" class="outline-3">
+<h3 id="orgheadline50"><span class="section-number-3">6.3</span> Sqlite basics:</h3>
+<div class="outline-text-3" id="text-6-3">
+<div class="org-src-container">
+
+<pre class="src src-Sqlite">thaum ~/code/app$ sqlite perl.db
+SQLite version 2.8.17
+Enter ".help" for instructions
+sqlite&gt; .tables
+sqlite&gt; .schema
+sqlite&gt; create table perltest (id integer PRIMARY KEY,name varchar(10), salary integer);
+sqlite&gt; .tables
+perltest
+sqlite&gt; .headers on
+sqlite&gt; .mode column
+sqlite&gt; select * from perltest;
+sqlite&gt; insert into perltest values(1,'arun',12345);
+sqlite&gt; insert into perltest values(2,'brun',23456);
+sqlite&gt; select * from perltest;
+id          name        salary
+----------  ----------  ----------
+1           arun        12345
+2           brun        23456
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline63" class="outline-2">
+<h2 id="orgheadline63"><span class="section-number-2">7</span> Learnings/Notes</h2>
+<div class="outline-text-2" id="text-7">
+</div><div id="outline-container-orgheadline52" class="outline-3">
+<h3 id="orgheadline52"><span class="section-number-3">7.1</span> Docker Notes:</h3>
+<div class="outline-text-3" id="text-7-1">
+<ul class="org-ul">
+<li>apache mesos: get a lot of compute clusters looking like a single system.</li>
+<li>Docker Trusted Registry: on-prem repository service</li>
+<li>Machine: configures docker on cloud instances</li>
+<li>Swarm: deploys containers in clusters. (Docker's version of Kubernetes)</li>
+<li>Compose: use YAML templates ofr multiple application deployments.</li>
+<li>Tutum - like compose for cloud deployment. New acquisition.</li>
+<li>OpenStack Havana supports docker as a hypervisor.</li>
+<li><code>docker run -d</code> (detaches and runs as a daemon)</li>
+<li>use <code>docker start -i asdasdas123 bash</code> to connect to an existing
+instance. (or actually attach).</li>
+<li>use <code>docker exec</code> if you want another process in an existing
+container. better than attach since attach just reattaches to the
+original pid1 process.</li>
+<li><code>docker rename</code> renames an existing container. otherwise <code>--name</code> while starting.</li>
+<li><code>docker ps -a</code> shows non-running containers.</li>
+<li>names are auto-generated if you don't specify them :)</li>
+<li>=docker run &#x2013;name loopdate -d centos /bin/sh -c "while true; do date; sleep 3; done"=</li>
+<li>(daemonize example)</li>
+<li><code>docker logs  --tail 0 -f loopdate</code></li>
+<li>(to see the live logs for the example above)</li>
+<li><code>docker cp /etc/hostname asdasd123132:/tmp</code></li>
+<li><code>docker run --restart &lt;etc&gt;</code>: sets a policy to restart if it
+stops. doesn't start a new container, just restarts the same id.</li>
+<li>NUMA - Non-Uniform Memory Access.</li>
+<li>/=var/lib/docker/containers/&lt;id&gt;=</li>
+<li><code>/var/lib/docker/aufs/diff/&lt;id&gt;</code>: see the CopyOnWrite diffs between this instance and the base layers.</li>
+<li><code>docker diff &lt;id&gt;</code>: shows files changed in a container.</li>
+<li><code>docker inspect loopdate|less</code> : json metadata, e.g. ipaddress.</li>
+<li><code>docker history &lt;image&gt;</code> shows the history of commands used to build that image.</li>
+<li>'latest' is a convention but need not be latest.. e.g. ubuntu sets
+'latest' to their LTS release 14.04, and not to bleeding edge.</li>
+<li>creating images: either 'commit' an existing container, or specify a dockerfile.</li>
+<li>you can save and package to tar file instead of pushing to a registry.</li>
+<li><code>docker images -a</code>: show intermediate images (these don't have tags)</li>
+<li><code>docker rm `docker ps --no-trunc -aq`</code> (remove everything)</li>
+<li>sample commit command:
+<code>docker commit --change 'CMD ["/usr/sbin/httpd","-D","FOREGROUND"]'  --change 'ENV APACHE_RUN_USER www-data'  --change 'ENV APACHE_RUN_GROUP www-data' 26cb lab/websvr:v0.2</code></li>
+<li>do a <code>docker pull &lt;image&gt;</code> before use if you want to speed up your boxes.</li>
+<li>docker registry is opensource, and v1.6+ is in go and supports parallel downloads.</li>
+<li>registry:latest is 0.9, and is a python app. deprecated.</li>
+<li><code>docker run -p 5000:5000 -d registry:2</code> &#x2013;gives a web interface for registry v2.</li>
+<li><code>docker tag arun/myapache localhost:5000/myapache</code>, followed by a
+<code>push</code>: pushes myapache to the local registry.</li>
+<li><code>docker save/load</code>: tar a repo (i.e. image), including parent layers
+and tags and versions, for local circulation.</li>
+<li><code>docker export</code> is like save, but flattens the filesystem.</li>
+<li>build a docker image from a dockerfile: docker build some/path</li>
+<li>use <code>--link</code> to link two containers together (adds to each container's
+hosts file). newer versions have advanced networking: put associated
+containers in a single subnet , and allow them to talk to each
+other.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgheadline56" class="outline-3">
+<h3 id="orgheadline56"><span class="section-number-3">7.2</span> Vagrant notes:</h3>
+<div class="outline-text-3" id="text-7-2">
+</div><div id="outline-container-orgheadline53" class="outline-4">
+<h4 id="orgheadline53"><span class="section-number-4">7.2.1</span> setup:</h4>
+<div class="outline-text-4" id="text-7-2-1">
+<ul class="org-ul">
+<li><code>vagrant init</code></li>
+<li><code>vagrant box add centos/7</code></li>
+<li>mention the same box in the vagrantfile</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgheadline54" class="outline-4">
+<h4 id="orgheadline54"><span class="section-number-4">7.2.2</span> start:</h4>
+<div class="outline-text-4" id="text-7-2-2">
+<ul class="org-ul">
+<li><code>vagrant up</code></li>
+<li><code>vagrant ssh</code></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgheadline55" class="outline-4">
+<h4 id="orgheadline55"><span class="section-number-4">7.2.3</span> stop:</h4>
+<div class="outline-text-4" id="text-7-2-3">
+<ul class="org-ul">
+<li><code>vagrant suspend</code> # save state and stop</li>
+<li><code>vagrant halt</code> # graceful shutdown</li>
+<li><code>vagrant destroy</code> # wipe out hd etc</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline57" class="outline-3">
+<h3 id="orgheadline57"><span class="section-number-3">7.3</span> Ansible notes</h3>
+<div class="outline-text-3" id="text-7-3">
+<ul class="org-ul">
+<li>Modules are wrappers for administration commands (like ping, apt, yum, copy, etc).</li>
+<li>Always use these instead of shell exec since modules are idempotent:
+you specify the state you want to be in, and the commands are run
+appropriately.</li>
+<li>A task contains a module to be run, along with Facts or conditions or anything else.</li>
+<li>Handlers can do everything tasks can, and are triggered by tasks
+when conditions are met. e.g. 'start nginx' would be a handler
+called in 'install nginx'.</li>
+<li>Roles organize multiple tasks in one coherent whole (e.g. installing
+nginx may require adding a repo, copying certs, installing the rpm
+and starting the server).</li>
+<li>Roles are organized like this: files, handlers, meta, templates, tasks, vars.</li>
+<li>Except files and templates, a main.yml file present in all other
+folders will be executed automatically.</li>
+<li>Files have static files, e.g. httpd.conf, certs etc.</li>
+<li>Handlers have triggers obviously</li>
+<li>Meta has dependencies and other metadata. e.g. run the ssl role
+before starting the nginx role.</li>
+<li>Templates are based on jinja2.</li>
+<li>Variables have vars that are used to fill the templates.</li>
+<li>Tasks have the main logic.</li>
+<li>To run the whole role, just call the main yaml: <code>ansible-playbook -s main.yml</code></li>
+<li>Facts are metadata gathered by ansible on init: num<sub>processors</sub>,
+cores, interfaces, mounts etc. you can use these vars in your
+templates.</li>
+<li>ansible-vault can be used to encrypt vars and files in a role.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgheadline58" class="outline-3">
+<h3 id="orgheadline58"><span class="section-number-3">7.4</span> Linux ad-hoc daemonization</h3>
+<div class="outline-text-3" id="text-7-4">
+<ul class="org-ul">
+<li>If a script is running in a terminal and you want to daemonize it, do this:</li>
+<li><code>Ctrl-Z</code> to suspend it</li>
+<li><code>bg</code> to make it a background job</li>
+<li><code>disown -h %job-id</code> where <code>job-id</code> is what bg returned. This removes
+the command from the shell's job list, so it won't get a SIGHUP when
+the terminal closes.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgheadline59" class="outline-3">
+<h3 id="orgheadline59"><span class="section-number-3">7.5</span> linux ctime vs mtime</h3>
+<div class="outline-text-3" id="text-7-5">
+<ul class="org-ul">
+<li>ctime is for inode, mtime is for contents</li>
+<li>e.g. chmod changes ctime. <code>echo "asd"&gt;&gt;file</code> changes mtime.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgheadline62" class="outline-3">
+<h3 id="orgheadline62"><span class="section-number-3">7.6</span> soft vs hard links</h3>
+<div class="outline-text-3" id="text-7-6">
+</div><div id="outline-container-orgheadline60" class="outline-4">
+<h4 id="orgheadline60"><span class="section-number-4">7.6.1</span> Hard links:</h4>
+<div class="outline-text-4" id="text-7-6-1">
+<ul class="org-ul">
+<li>Two filenames in a folder pointing to the exact same inode.</li>
+<li>There is no distinction between the link and the original.</li>
+<li>This means you can delete one file and the other will still exist!</li>
+<li>Cannot traverse filesystems. cannot hard link directories</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgheadline61" class="outline-4">
+<h4 id="orgheadline61"><span class="section-number-4">7.6.2</span> Soft links:</h4>
+<div class="outline-text-4" id="text-7-6-2">
+<ul class="org-ul">
+<li>A new kind of file that has its own inode entry. the OS knows how to
+traverse from it to the parent.</li>
+<li>No limitations.</li>
+
+<li>When a user runs mkdir, along with creating a directory, mkdir
+internally creates a hard-link called '..' pointing to the
+parent. that's why cd .. takes you to the parent, and that way '..'
+doesn't take up space in the filesystem either. Similarly another
+hardlink called '.' is created inside that folder, linking to the
+folder itself in the parent.</li>
+</ul>
+
+<p>
+i.e. if you have test/child:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-sh"><span style="color: #ff8A65;">cd</span> child
+ls -ail
+.   inode1  <span style="color: #b0bec5;"># </span><span style="color: #b0bec5;">child's inode</span>
+..  inode2  <span style="color: #b0bec5;"># </span><span style="color: #b0bec5;">parent's inode</span>
+<span style="color: #ff8A65;">cd</span> ..
+ls -ail
+. inode2   <span style="color: #b0bec5;"># </span><span style="color: #b0bec5;">parent's inode</span>
+.. inode4  <span style="color: #b0bec5;"># </span><span style="color: #b0bec5;">parent's parent's inode</span>
+child inode1
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Arun S</p>
+<p class="date">Created: 2016-07-21 Thu 10:08</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

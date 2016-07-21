@@ -1,0 +1,708 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2016-07-21 Thu 10:08 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="viewport" content="width=device-width, initial-scale=1" />
+<title>Programming Notes</title>
+<meta  name="generator" content="Org-mode" />
+<meta  name="author" content="Arun S" />
+<meta  name="description" content="notes on python etc."
+ />
+<meta  name="keywords" content="python notes coding programming tech" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Programming Notes</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgheadline14">1. Python notes</a>
+<ul>
+<li><a href="#orgheadline1">1.1. Python3 on centos (using scl):</a></li>
+<li><a href="#orgheadline5">1.2. Design patterns</a>
+<ul>
+<li><a href="#orgheadline2">1.2.1. Observer:</a></li>
+<li><a href="#orgheadline3">1.2.2. Strategy:</a></li>
+<li><a href="#orgheadline4">1.2.3. Template:</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline6">1.3. Unicode, and Encode vs Decode</a></li>
+<li><a href="#orgheadline7">1.4. Decorator example</a></li>
+<li><a href="#orgheadline8">1.5. Django notes</a></li>
+<li><a href="#orgheadline9">1.6. Magic number</a></li>
+<li><a href="#orgheadline10">1.7. Dunder methods</a></li>
+<li><a href="#orgheadline11">1.8. Pickling</a></li>
+<li><a href="#orgheadline12">1.9. Staticmethod vs Classmethod</a></li>
+<li><a href="#orgheadline13">1.10. Import files with hyphens</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline20">2. Other languages</a>
+<ul>
+<li><a href="#orgheadline18">2.1. HTML / CSS</a>
+<ul>
+<li><a href="#orgheadline15">2.1.1. HTML header</a></li>
+<li><a href="#orgheadline16">2.1.2. CSS</a></li>
+<li><a href="#orgheadline17">2.1.3. FORMS</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline19">2.2. tcl: xml parsing example</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline29">3. Other study notes</a>
+<ul>
+<li><a href="#orgheadline21">3.1. TCP</a></li>
+<li><a href="#orgheadline22">3.2. Unicode in DNS:</a></li>
+<li><a href="#orgheadline25">3.3. UTF-8</a>
+<ul>
+<li><a href="#orgheadline23">3.3.1. example of unicode encoding:</a></li>
+<li><a href="#orgheadline24">3.3.2. example 2:</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline26">3.4. Levenshtein Distance</a></li>
+<li><a href="#orgheadline27">3.5. Linux's CFS: Completely Fair Scheduler</a></li>
+<li><a href="#orgheadline28">3.6. Memory layout in Linux</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+
+<div id="outline-container-orgheadline14" class="outline-2">
+<h2 id="orgheadline14"><span class="section-number-2">1</span> Python notes</h2>
+<div class="outline-text-2" id="text-1">
+</div><div id="outline-container-orgheadline1" class="outline-3">
+<h3 id="orgheadline1"><span class="section-number-3">1.1</span> Python3 on centos (using scl):</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+<code>scl enable python33 bash</code>
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline5" class="outline-3">
+<h3 id="orgheadline5"><span class="section-number-3">1.2</span> Design patterns</h3>
+<div class="outline-text-3" id="text-1-2">
+</div><div id="outline-container-orgheadline2" class="outline-4">
+<h4 id="orgheadline2"><span class="section-number-4">1.2.1</span> Observer:</h4>
+<div class="outline-text-4" id="text-1-2-1">
+<ul class="org-ul">
+<li>Like a presence subscription. multiple obvservers get notified when
+a core object changes.</li>
+<li>Also see @property to create setters/getters for attributes. That
+way when an attribute changes, we can make a call to update() and
+let the observers know.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgheadline3" class="outline-4">
+<h4 id="orgheadline3"><span class="section-number-4">1.2.2</span> Strategy:</h4>
+<div class="outline-text-4" id="text-1-2-2">
+<ul class="org-ul">
+<li>Different implementations hidden beneath a single
+abstraction. e.g. user calls sort() but does not care which
+algorithm is used.</li>
+<li>Create different classes and implement <code>__call__</code>, so that when an
+object is created, that function is called automatically.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgheadline4" class="outline-4">
+<h4 id="orgheadline4"><span class="section-number-4">1.2.3</span> Template:</h4>
+<div class="outline-text-4" id="text-1-2-3">
+<ul class="org-ul">
+<li>Differing steps in separate classes, one controller.</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline6" class="outline-3">
+<h3 id="orgheadline6"><span class="section-number-3">1.3</span> Unicode, and Encode vs Decode</h3>
+<div class="outline-text-3" id="text-1-3">
+<ul class="org-ul">
+<li><code>bytes.decode</code>: interpret a stream of bytes (from a file or the
+network) as unicode, with a passed charset like UTF-8 or latin-1.</li>
+<li><code>str.encode</code>: take a unicode string and convert it to bytes, to write
+to file or send over a network.</li>
+<li><b>deep breath</b> both byte strings and unicode have a method to convert
+to the other. byte.decode('utf-8') takes a byte stream and
+represents it as a UTF-8 string. utf.encode() takes a utf-8 string
+and represents it as a byte stream (to send out over a network, for
+example).</li>
+<li><code>encode()</code> accepts an arg that allows you to represent as ascii, but
+replace out-of-range characters with ???? or something else.</li>
+<li>Python2: str: stream of bytes, unicode: unicode.</li>
+<li>Python3: str: unicode, bytes: stream of bytes.</li>
+<li>Python2 implicitly tries to change bytes to unicode and vice versa
+to be 'helpful'. Python3 doesn't.</li>
+<li>A recommendation: bytes on the outside -&gt; decode to utf-8 -&gt; use
+unicode inside -&gt; encode to bytes -&gt; send out.</li>
+<li><code>IOBuffer</code> and <code>FileBuffer</code> are like dummy network/file interfaces
+(useful for tests?)</li>
+<li>ISO-8859-1 aka Latin-1 is a single byte extension to ascii that
+supports a few extra symbols.</li>
+</ul>
+</div>
+</div>
+
+
+<div id="outline-container-orgheadline7" class="outline-3">
+<h3 id="orgheadline7"><span class="section-number-3">1.4</span> Decorator example</h3>
+<div class="outline-text-3" id="text-1-4">
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #fff59d;">def</span> <span style="color: #84ffff;">my_decorator</span>(func):
+    <span style="color: #fff59d;">def</span> <span style="color: #84ffff;">wrapper</span>(*args, **kwargs):
+        <span style="color: #b0bec5;"># </span><span style="color: #b0bec5;">do pre-processing</span>
+        <span style="color: #ffcc80;">ret</span> = func(*args, **kwargs)
+        <span style="color: #b0bec5;"># </span><span style="color: #b0bec5;">do post-processing</span>
+        <span style="color: #fff59d;">return</span> ret
+    <span style="color: #fff59d;">return</span> wrapper
+</pre>
+</div>
+
+<p>
+i.e., return a function (wrapper) that calls func with its args, but
+do your pre/post stuff within wrapper.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline8" class="outline-3">
+<h3 id="orgheadline8"><span class="section-number-3">1.5</span> Django notes</h3>
+<div class="outline-text-3" id="text-1-5">
+<ul class="org-ul">
+<li>Change your models (in models.py).</li>
+<li>Run <code>python manage.py makemigrations</code> to create migrations for those changes</li>
+<li>Run <code>python manage.py migrate</code> to apply those changes to the database.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgheadline9" class="outline-3">
+<h3 id="orgheadline9"><span class="section-number-3">1.6</span> Magic number</h3>
+<div class="outline-text-3" id="text-1-6">
+<p>
+The python interpreter's magic number is found in:
+</p>
+
+<p>
+<code>importlib.util.MAGIC_NUMBER</code>
+</p>
+
+<p>
+.pyc file format:
+</p>
+
+<p>
+<code>magic number | mtime | size | marshaled code object</code>
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline10" class="outline-3">
+<h3 id="orgheadline10"><span class="section-number-3">1.7</span> Dunder methods</h3>
+<div class="outline-text-3" id="text-1-7">
+<ul class="org-ul">
+<li>String/bytes representation</li>
+</ul>
+
+<p>
+<code>__repr__, __str__, __format__, __bytes__</code>
+</p>
+
+<ul class="org-ul">
+<li>Conversion to number</li>
+</ul>
+
+<p>
+<code>__abs__, __bool__, __complex__, __int__, __float__, __hash__, __index__</code>
+</p>
+
+<ul class="org-ul">
+<li>Emulating collections</li>
+</ul>
+
+<p>
+<code>__len__, __getitem__, __setitem__, __delitem__, __contains__</code>
+</p>
+
+<ul class="org-ul">
+<li>Iteration</li>
+</ul>
+
+<p>
+<code>__iter__, __reversed__, __next__</code>
+</p>
+
+<ul class="org-ul">
+<li>Emulating callables</li>
+</ul>
+
+<p>
+<code>__call__</code>
+</p>
+
+<ul class="org-ul">
+<li>Context management</li>
+</ul>
+
+<p>
+<code>__enter__, __exit__</code>
+</p>
+
+<ul class="org-ul">
+<li>Instance creation and destruction</li>
+</ul>
+
+<p>
+<code>__new__, __init__, __del__</code>
+</p>
+
+<ul class="org-ul">
+<li>Attribute management</li>
+</ul>
+
+<p>
+<code>__getattr__, __getattribute__, __setattr__, __delattr__, __dir__</code>
+</p>
+
+<ul class="org-ul">
+<li>Attribute descriptors</li>
+</ul>
+
+<p>
+<code>__get__, __set__, __delete__</code>
+</p>
+
+<ul class="org-ul">
+<li>Class services</li>
+</ul>
+
+<p>
+<code>__prepare__, __instancecheck__, __subclasscheck__</code>
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline11" class="outline-3">
+<h3 id="orgheadline11"><span class="section-number-3">1.8</span> Pickling</h3>
+<div class="outline-text-3" id="text-1-8">
+<ul class="org-ul">
+<li>The last byte of a pickled file is a '.' Anything that follows it is ignored.</li>
+<li>This would be a way to embed a jpeg or something to the end of a pickle file..??</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgheadline12" class="outline-3">
+<h3 id="orgheadline12"><span class="section-number-3">1.9</span> Staticmethod vs Classmethod</h3>
+<div class="outline-text-3" id="text-1-9">
+<ul class="org-ul">
+<li>staticmethod: can be called directly from the class, without instantiating an object.</li>
+<li>classmethod: exactly the same.</li>
+<li>BUT: when a staticmethod is called from an object, the 'self'
+parameter is never passed, the way it is for classmethods and normal
+methods.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgheadline13" class="outline-3">
+<h3 id="orgheadline13"><span class="section-number-3">1.10</span> Import files with hyphens</h3>
+<div class="outline-text-3" id="text-1-10">
+<p>
+<code>test_cmd = importlib.import_module('test-cmd', None)</code>
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgheadline20" class="outline-2">
+<h2 id="orgheadline20"><span class="section-number-2">2</span> Other languages</h2>
+<div class="outline-text-2" id="text-2">
+</div><div id="outline-container-orgheadline18" class="outline-3">
+<h3 id="orgheadline18"><span class="section-number-3">2.1</span> HTML / CSS</h3>
+<div class="outline-text-3" id="text-2-1">
+</div><div id="outline-container-orgheadline15" class="outline-4">
+<h4 id="orgheadline15"><span class="section-number-4">2.1.1</span> HTML header</h4>
+<div class="outline-text-4" id="text-2-1-1">
+<div class="org-src-container">
+
+<pre class="src src-html">&lt;<span style="color: #84ffff;">html</span> <span style="color: #ffcc80;">lang</span>=<span style="color: #9ccc65;">"en"</span>&gt;
+</pre>
+</div>
+
+<ul class="org-ul">
+<li>Here <code>lang</code> is an 'attribute', with value <code>en</code>.</li>
+<li><code>html</code> is the tag.</li>
+<li><code>head</code> has metadata, one of which is <code>title</code> (to fill the tab bar).</li>
+<li><code>html</code> has tags for 'article', 'header', and 'figure' now!</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgheadline16" class="outline-4">
+<h4 id="orgheadline16"><span class="section-number-4">2.1.2</span> CSS</h4>
+<div class="outline-text-4" id="text-2-1-2">
+<ul class="org-ul">
+<li>Use classes to segregate your content. Call it with a leading '.' in css. e.g.</li>
+</ul>
+
+<p>
+<code>.site-nav-header { width: 300 px }</code>
+</p>
+
+<ul class="org-ul">
+<li>ID's on the other hand can only be used once per html page. use with
+leading '#' in css. e.g.</li>
+</ul>
+
+<p>
+<code>#main-title { color: green }</code>
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline17" class="outline-4">
+<h4 id="orgheadline17"><span class="section-number-4">2.1.3</span> FORMS</h4>
+<div class="outline-text-4" id="text-2-1-3">
+<div class="org-src-container">
+
+<pre class="src src-html">&lt;<span style="color: #84ffff;">label</span> <span style="color: #ffcc80;">for</span>=<span style="color: #9ccc65;">"nickname"</span>&gt;Please enter your nickname&lt;/<span style="color: #84ffff;">label</span>&gt;
+&lt;<span style="color: #84ffff;">input</span> <span style="color: #ffcc80;">type</span>=<span style="color: #9ccc65;">"text"</span> <span style="color: #ffcc80;">id</span>=<span style="color: #9ccc65;">"nickname"</span> <span style="color: #ffcc80;">name</span>=<span style="color: #9ccc65;">"nickname"</span>&gt;
+</pre>
+</div>
+
+<ul class="org-ul">
+<li>The label's <code>for</code> should match the input's <code>id</code></li>
+<li>The <code>name</code> is what is passed to the backend as a variable name</li>
+<li><code>input type</code> can be a lot of things, like 'email' or 'submit'</li>
+
+<li>All of these: labels, inputs etc are inline-block elements and are
+therefore stacked horizontally.</li>
+<li>To align them better, use div's, which are container tags that break
+up these horizontal elements into vertical stacks.</li>
+</ul>
+
+<p>
+There are 3 groups of elements in the way the browser stacks them:
+</p>
+<ul class="org-ul">
+<li>inline: span, em, strong (all treated horizontally)</li>
+<li>block level: p, div, article (browser inserts CRLF)</li>
+<li>inline block level : input, textarea (can be resized)</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline19" class="outline-3">
+<h3 id="orgheadline19"><span class="section-number-3">2.2</span> tcl: xml parsing example</h3>
+<div class="outline-text-3" id="text-2-2">
+<div class="org-src-container">
+
+<pre class="src src-tcl"><span style="color: #ff8A65;">package</span> require tdom
+<span style="color: #ff8A65;">set</span> <span style="color: #ffcc80;">dom</span> [dom parse $<span style="color: #ffcc80;">XML</span>]     
+<span style="color: #ff8A65;">set</span> <span style="color: #ffcc80;">recording</span> [$<span style="color: #ffcc80;">dom</span> documentElement]
+<span style="color: #ff8A65;">set</span> <span style="color: #ffcc80;">datamode</span> [$<span style="color: #ffcc80;">recording</span> firstChild]
+<span style="color: #ff8A65;">set</span> <span style="color: #ffcc80;">session</span> [$<span style="color: #ffcc80;">datamode</span> nextSibling]
+$<span style="color: #ffcc80;">session</span> attributes *
+$<span style="color: #ffcc80;">session</span> getAttribute session_id
+<span style="color: #ff8A65;">set</span> <span style="color: #ffcc80;">participant</span> [$<span style="color: #ffcc80;">session</span> nextSibling]
+<span style="color: #ff8A65;">set</span> <span style="color: #ffcc80;">dom</span> [dom parse $<span style="color: #ffcc80;">XML</span>]     
+<span style="color: #ff8A65;">set</span> <span style="color: #ffcc80;">recording</span> [$<span style="color: #ffcc80;">dom</span> documentElement]
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline29" class="outline-2">
+<h2 id="orgheadline29"><span class="section-number-2">3</span> Other study notes</h2>
+<div class="outline-text-2" id="text-3">
+</div><div id="outline-container-orgheadline21" class="outline-3">
+<h3 id="orgheadline21"><span class="section-number-3">3.1</span> TCP</h3>
+<div class="outline-text-3" id="text-3-1">
+<ul class="org-ul">
+<li>Use <code>SO_REUSEADDR</code> when stopping/starting servers: the OS will keep a
+socket alive for ~4 minutes after it's closed in case it has to
+retransmit FINs/ACKs.</li>
+<li>Deadlocks occur if the OS buffers fill up in both ends. e.g. client
+send blocks of data, server has a <code>recv(1024)</code> and processes and
+sends data (say, 1024), but client only has a recv of say, 10. Then
+his buffer gets filled up since he's getting a lot more data than he
+can handle. so the server's sends stop working. similarly the
+server's recv fills up &#x2026;</li>
+<li>Either can call <code>socket.shutdown</code>, e.g. if you're a client who's
+finished sending data and wants to notify this. The connection stays
+open so he can continue getting data. <code>shutdown</code>'s flags will stop
+reads, writes, or both.</li>
+<li>Address families: pretty much always <code>AF_INET</code>. <code>AF_UNIX</code> is for local
+file sockets. bluetooth etc also exist. Oh <code>AF_INET6</code> also exists.</li>
+<li>Socket type: <code>SOCK_DGRAM</code> (2) and <code>SOCK_STREAM</code> (1). (each address
+family has its own udp/tcp equivalents under the dgram/stream types)</li>
+<li>Last field is protocol which can be zeroed/ignored. <code>IPROTO_TCP</code> is
+6 and <code>IPROTO_UDP</code> is 17. but we can infer it from the socket type
+above so we don't need to set it each time.</li>
+
+<li>To avoid v4/v6 and other binding confusions, use
+<code>getaddrinfo(host,port)</code> : it returns FTPCA (family, type, protocol,
+canonical name and address)</li>
+
+<li>Use <code>socket.getservbyname(53)</code> to see port-&gt;service mappings.</li>
+<li>Similarly <code>socket.gethostbyname('abc.com')</code> or <code>gethostbyaddr('1.2.3.4')</code></li>
+<li>So self ip address is <code>socket.gethostbyname(socket.getfqdn())</code></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgheadline22" class="outline-3">
+<h3 id="orgheadline22"><span class="section-number-3">3.2</span> Unicode in DNS:</h3>
+<div class="outline-text-3" id="text-3-2">
+<ul class="org-ul">
+<li>RFC 3492 specifies the IDNA codec that maps a unicode hostname to an
+ascii representation.</li>
+<li>The lookup is performed for the encoded ascii string only.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgheadline25" class="outline-3">
+<h3 id="orgheadline25"><span class="section-number-3">3.3</span> UTF-8</h3>
+<div class="outline-text-3" id="text-3-3">
+<ul class="org-ul">
+<li>utf-8: 1-4 bytes. use setlocale() to switch encodings</li>
+</ul>
+</div>
+<div id="outline-container-orgheadline23" class="outline-4">
+<h4 id="orgheadline23"><span class="section-number-4">3.3.1</span> example of unicode encoding:</h4>
+<div class="outline-text-4" id="text-3-3-1">
+<ul class="org-ul">
+<li>character "¢"= code point U+00A2 = 00000000 10100010 → 11000010
+10100010 → hexadecimal C2 A2</li>
+<li>explanation: if the actual code is 00000000 10100010, then the
+representation starts with a 11 (to show that 2 bytes are needed to
+represent this character), followed by the data. The continuation
+bytes always start with a 10.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgheadline24" class="outline-4">
+<h4 id="orgheadline24"><span class="section-number-4">3.3.2</span> example 2:</h4>
+<div class="outline-text-4" id="text-3-3-2">
+<ul class="org-ul">
+<li>The following string contains 4 utf-8 characters:</li>
+</ul>
+<div class="org-src-container">
+
+<pre class="src src-sh"><span style="color: #9ccc65;">"\xD4\xBC\xF0\x9D\x90\x84\x45\xC6\xAC\x00"</span>
+</pre>
+</div>
+<ul class="org-ul">
+<li>D4 converted to Hex is 11010100 which tells us (from the first 2
+bits) that 2 bytes take up this character. similarly F0 == 11110000
+which takes 4 bytes to specify the next character, and so on.</li>
+<li>Do not modify strings directly in C (the compiler may store multiple
+identical string literals in the same address, so modifying one will
+affect the other)</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline26" class="outline-3">
+<h3 id="orgheadline26"><span class="section-number-3">3.4</span> Levenshtein Distance</h3>
+<div class="outline-text-3" id="text-3-4">
+<ul class="org-ul">
+<li>Used in fuzzy searching (e.g. 'git lgo' which autocorrects and recommends 'log')</li>
+<li>Used to measure the difference between two strings</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgheadline27" class="outline-3">
+<h3 id="orgheadline27"><span class="section-number-3">3.5</span> Linux's CFS: Completely Fair Scheduler</h3>
+<div class="outline-text-3" id="text-3-5">
+<ul class="org-ul">
+<li>On a single cpu, the available cpu cycles are divided among all the
+threads in proportion to their weights.</li>
+<li>The weight <code>= priority =</code> niceness.</li>
+<li>Threads are organized in a runqueue (implemented as a red-black tree).</li>
+<li>A thread exceeding its timeslice is pre-empted and the next one is given a slice.</li>
+<li>In multicore systems, each core has its own runqueue.</li>
+<li>But this may not always be fair (since one core may run one
+low-priority thread while the other may run several high-priority
+threads, inefficiently)</li>
+<li>So linux has a load balancer that periodically keeps the queus in balance.</li>
+<li>Load balancing is a costly operation (both computation and
+commuication operations are expensive) so it is kept at a minimum if
+possible.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgheadline28" class="outline-3">
+<h3 id="orgheadline28"><span class="section-number-3">3.6</span> Memory layout in Linux</h3>
+<div class="outline-text-3" id="text-3-6">
+<ul class="org-ul">
+<li>32-bit: 3:1 ratio: out of 4gb, 3gb is for users and 1gb for kernel</li>
+<li>64-bit: 1:1: out of 128TB, 64TB is for users and 64 for kernel.</li>
+<li>So the kernel memory starts at 0xffff80000000&lt;snip&gt;000 in 64-bit,
+and 0xc000000 in 32-bit.</li>
+<li>For a user process, Stack size is 8mb by default (see ulimit -s).</li>
+<li>Stack occupies top of the address space and grows down.</li>
+<li>The botttom of the stack contains env variables, prog name and **args</li>
+<li>Below the stack is memmap which has stuff linked dynamically and
+mapped by the kernel at runtime.</li>
+<li>Then is the heap.</li>
+<li>Then there's bss/data/program text.</li>
+<li>text is usually read-only.</li>
+<li>stack and data are non-executable (to prevent (partially) overflows).</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Arun S</p>
+<p class="date">Created: 2016-07-21 Thu 10:08</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
