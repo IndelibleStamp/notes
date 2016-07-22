@@ -1,3 +1,6 @@
+#+TITLE:     Git Notes
+#+AUTHOR:    Arun S
+#+EMAIL:     arun@indeliblestamp.com
 #+OPTIONS: html-link-use-abs-url:nil html-postamble:auto
 #+OPTIONS: html-preamble:t html-scripts:t html-style:t
 #+OPTIONS: html5-fancy:nil tex:t
@@ -14,9 +17,6 @@
 #+INFOJS_OPT:
 #+CREATOR: <a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.5.1 (<a href="http://orgmode.org">Org</a> mode 8.3.4)
 #+LATEX_HEADER:
-#+TITLE:     Git Notes
-#+AUTHOR:    Arun S
-#+EMAIL:     arun@indeliblestamp.com
 
 ** Color coded git output
 =git config --global color.ui true=
