@@ -71,8 +71,20 @@ You can undo the revert with this:
 
 ** Stash: checkout a pull request
 - From here: https://gist.github.com/hongymagic/6339056
-- Or just try this:
-=/usr/bin/git -c core.askpass=true fetch --tags --progress ssh://<repository-url> +refs/*:refs/remotes/=
+
+First add this to =.git/config= under the =origin= section:
+
+#+BEGIN_SRC sh
+    fetch = +refs/pull-requests/*:refs/remotes/origin/pull-requests/*
+#+END_SRC
+
+Then fetch the pull requests:
+
+=git fetch origin=
+
+Then checkout the one you want:
+
+=git checkout pull-requests/1000/from=
 
 ** Git rebase vs normal pull
 - Instead of a normal pull, try this:
