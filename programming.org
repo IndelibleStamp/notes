@@ -298,3 +298,8 @@ set recording [$dom documentElement]
 - text is usually read-only.
 - stack and data are non-executable (to prevent (partially) overflows).
 
+* Java notes
+** java Tokens
+- If not a comment or whitespace, it is a token, which is one of:
+- Identifiers, keyword, literal, separator, operator.
+  - Identifiers: [A-Za-z_$][A-Za-z0-9]*
