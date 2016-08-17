@@ -63,6 +63,23 @@
 - ISO-8859-1 aka Latin-1 is a single byte extension to ascii that
   supports a few extra symbols.
 
+** Coverage usage
+Run this:
+
+=coverage run scriptname args=
+
+Results are stored in =.coverage=. If the script has different args,
+backup =.coverage=, run again and then combine them:
+
+=coverage combine .coverage.old .coverage=
+
+For a quick summary (=-m= specifies the missing lines):
+
+=coverage report -m=
+
+For a report (=-d= specifies the dest folder):
+
+=coverage html -d coverage_html=
 
 ** Decorator example
 
