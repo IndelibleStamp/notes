@@ -123,3 +123,19 @@ git commit -am "bumping up submodule version"
 
 Then merge the code. The next time the parent repository is pulled,
 updating the submodule will get the latest commit in it.
+
+** Working with remotes
+
+- Changing a remote's name
+
+=git remote origin set-url http://some-other-url=
+
+- Adding a remote
+
+=git remote add newremote http://newremote-url=
+
+- Then as usual push/pull to and from these remotes
+
+=git pull origin master=
+
+=git push newremote master=
