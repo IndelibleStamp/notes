@@ -106,3 +106,20 @@ Then checkout the one you want:
 ** Git log on a file
 =git log -p filename=
 
+** Submodules
+
+- To update all submodules:
+
+=git submodule update --init --recursive=
+
+- To fetch the latest code from a submodule:
+
+#+BEGIN_SRC sh
+cd <submodule-folder>
+git pull
+cd ..
+git commit -am "bumping up submodule version"
+#+END_SRC
+
+Then merge the code. The next time the parent repository is pulled,
+updating the submodule will get the latest commit in it.
