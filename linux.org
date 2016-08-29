@@ -284,6 +284,10 @@ Try this:
 =-d any= listens on any interface
 
 =-q= is quiet mode so those =#='s don't show.
+** Pretty-print json
+
+=cat somefile.json | python -m json.tool=
+
 * Systemd
 ** Flush old logs in journalctl
 - By date or by size:
@@ -315,6 +319,16 @@ or this:
 - =dnf history= # note the id of the bad removal here
 - =dnf history undo 96=
 - yum/dnf will reinstall all the packages that were removed in that id.
+
+** Dependencies of a package
+
+- This command shows what other packages need the queried package:
+
+=repoquery --whatrequires libunwind=
+
+- This command shows what other packages need to be installed for a queried package:
+
+=yum deplist nginx=
 
 * Networking
 ** Curl tips
