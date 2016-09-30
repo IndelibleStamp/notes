@@ -101,6 +101,22 @@ followed by:
 - =whois= package: provides =mkpasswd=
 =mkpasswd --method=SHA-512=
 
+** IPtables port forwarding
+
+Use case: make tomcat on port 8443 listen on port 443.
+
+=sudo iptables -A PREROUTING -t nat -i eth0 -p tcp --dport 80 -j REDIRECT --to-port 8080=
+
+This will forward all traffic coming in on port 443 to the tomcat
+server listening on 8443.
+ 
+(picked from here: https://mihail.stoynov.com/2011/04/04/howto-start-tomcat-on-port-80-without-root-privileges/)
+
+To view, the usual =-L= and =-F= won't show anything. Instead, use:
+
+=iptables -L -t nat=
+
+=iptables -F -t nat=
 
 ** Open firewall ports in centos:
 =firewall-cmd --permanent --add-port=5672/tcp=
