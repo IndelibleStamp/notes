@@ -176,6 +176,11 @@ ESC[0m All attributes off
 
 ** Bash Stty: Coredump etc
 =Ctrl \=
+
+or
+
+=kill -SIGQUIT <pid>=
+
 - Override it with 
 - =stty quit <some-binding>=
 - similarly for that age-old backspace not deleting a character problem:
