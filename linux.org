@@ -306,6 +306,21 @@ sudo journalctl --vacuum-size=500M
 
 - =journalctl -f=
 
+** Store logs on disk
+
+(from http://unix.stackexchange.com/questions/159221/how-display-log-messages-from-previous-boots-under-centos-7)
+
+On CentOS 7, you have to enable the persistent storage of log messages:
+
+#+BEGIN_SRC sh
+# mkdir /var/log/journal
+# systemd-tmpfiles --create --prefix /var/log/journal
+# systemctl restart systemd-journald
+#+END_SRC
+
+Otherwise, the journal log messages are not retained between
+boots. This is the default on Fedora 19+.
+
 * Package management
 ** Sort RPMs by size
 =rpm -qa --queryformat '%{size} %{name}\n' | sort -rn | more=
