@@ -104,7 +104,12 @@ Then checkout the one you want:
 =git push origin master=
 
 ** Git log on a file
+
 =git log -p filename=
+
+actually do this:
+
+=git log --follow filename=
 
 ** Submodules
 
