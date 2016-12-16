@@ -1,0 +1,65 @@
+#+TITLE:     Text Editors
+#+AUTHOR:    Arun S
+#+EMAIL:     arun@indeliblestamp.com
+#+OPTIONS: html-link-use-abs-url:nil html-postamble:auto
+#+OPTIONS: html-preamble:t html-scripts:t html-style:t
+#+OPTIONS: html5-fancy:nil tex:t
+#+HTML_DOCTYPE: xhtml-strict
+#+HTML_CONTAINER: div
+#+DESCRIPTION: text editors
+#+KEYWORDS: linux, text, editors, emacs, vi, vim
+#+HTML_LINK_HOME:
+#+HTML_LINK_UP:
+#+HTML_MATHJAX:
+#+HTML_HEAD:
+#+HTML_HEAD_EXTRA:
+#+SUBTITLE:
+#+INFOJS_OPT:
+#+CREATOR: <a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.5.1 (<a href="http://orgmode.org">Org</a> mode 8.3.4)
+#+LATEX_HEADER:
+
+** Org-mode Keybindings
+*** Basic keybindings
+- =C-c C-n= and =C-c C-p= to cycle between headings.
+- =TAB= on a heading to expand/collapse.
+- =M-up= and =M-down= to reorder sections.
+- =M-left= and =M-right= to change the level of a heading.
+- =M-RET= inside a list to create a new bullet.
+  * =TAB= in a new bullet to indent it.
+  * =S-left= and =S-right= to change the bullet-style.
+
+*** Checkboxes [2/3]
+- [ ] =M-S-RET= gives a checkbox.
+- [X] =C-c C-c= checks it.
+  - [X] =TAB= for subdivisions.
+  - [X] When all subtasks are checked, so is the main one.
+- [X] A trailing [] in the line preceding a list of checkboxes contains a summary (2/3 in this case).
+
+*** Publishing/Exporting
+- =C-c C-e= for everything. 
+  - =h o= exports to html.
+  - =#= brings up common templates.
+
+** Org-mode code blocks
+- Awk, C, R, Asymptote, Calc, Clojure, CSS, Ditaa, Dot, Emacs Lisp,
+  Forth, Fortran, Gnuplot, Haskell, IO, J, Java, Javascript, LaTeX,
+  Ledger, Lilypond, Lisp, Makefile, Maxima, Matlab, Mscgen, Ocaml,
+  Octave, Org, Perl, Pico Lisp, PlantUML, Python, Ruby, Sass, Scala,
+  Scheme, Screen, sh, Shen, Sql, Sqlite, ebnf2ps.
+
+** Set font in gvim permanently:
+- Change it for the current session and verify what it is set as with this:
+=:set guifont?=
+- Copy the string and add it to .vimrc like so:
+=set guifont=Hack:h9:cANSI=
+
+** Vim tips:
+- delete trailing whitespace:
+=:%s: *$::=
+- pull onto search line:
+=/ CtrlR CtrlW=
+- open file name under cursor:
+=gf=
+- increment/decrement number under cursor:
+=CtrlA/CtrlX=
+
