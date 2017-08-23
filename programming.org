@@ -315,6 +315,20 @@ set recording [$dom documentElement]
 - text is usually read-only.
 - stack and data are non-executable (to prevent (partially) overflows).
 
+** Algorithmic Complexit
+
+
+| Notation   | Type          | Example                                |
+|------------+---------------+----------------------------------------|
+| O(1)       | Constant Time | Dict Lookup                            |
+| O(lg n)    | Logarithmic   | Binary Search                          |
+| O(n)       | Linear        | Iterating over a list                  |
+| O(n log n) | Log Linear    | Optimal sorting of arbitrary values    |
+| O(n^2)     | Quadratic     | Comparing /n/ objects to each other    |
+| O(n^3)     | Cubic         | Floyd and Washall's algorithms         |
+| O(nk)      | Polynomial    | /k/ nested loops over /n/              |
+| O(n!)      | Factorial     | Producing every ordering of /n/ values |
+
 * Java notes
 ** java Tokens
 - If not a comment or whitespace, it is a token, which is one of:
