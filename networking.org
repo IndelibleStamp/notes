@@ -66,3 +66,11 @@ Connection to erdos 22 port [tcp/ssh] succeeded!
 bash-3.2 ~$ 
 #+END_SRC
 
+** Force NTP sync
+
+#+BEGIN_SRC sh
+sudo systemctl stop ntpd
+sudo ntpdate -s time.nist.gov
+sudo systemctl start ntpd
+#+END_SRC
+
