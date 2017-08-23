@@ -1,0 +1,115 @@
+#+TITLE:     OpenSSL Notes
+#+AUTHOR:    Arun S
+#+EMAIL:     me@arunsr.in
+#+OPTIONS: html-link-use-abs-url:nil html-postamble:auto
+#+OPTIONS: html-preamble:t html-scripts:t html-style:t
+#+OPTIONS: html5-fancy:nil tex:t
+#+HTML_DOCTYPE: xhtml-strict
+#+HTML_CONTAINER: div
+#+DESCRIPTION: openssl notes
+#+KEYWORDS: openssl, tls
+#+HTML_LINK_HOME:
+#+HTML_LINK_UP:
+#+HTML_MATHJAX:
+#+HTML_HEAD:
+#+HTML_HEAD_EXTRA:
+#+SUBTITLE:
+#+INFOJS_OPT:
+#+CREATOR: <a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.5.1 (<a href="http://orgmode.org">Org</a> mode 8.3.4)
+#+LATEX_HEADER:
+
+** Verify
+
+- Public Cert
+
+=openssl x509 -noout -text -in server.crt=
+
+- Private Key
+
+=openssl rsa -noout -text -in server.key=
+
+- CSR
+
+=openssl req -text -noout -verify -in server.csr=
+
+** Connect and verify
+
+- Connect to a remote host and see a whole lot of details:
+
+   #+BEGIN_SRC sh
+   openssl s_client -verify -showcerts \
+   -connect remote-hostname.com:443 -msg \
+   -CAfile allca.cer -cert myhostname.cer -key myhostname.key
+   #+END_SRC
+
+- View a remote host's certificate details:
+
+  #+BEGIN_SRC sh
+  echo | \
+  openssl s_client  -connect remote-hostname.com:443 2>/dev/null | \
+  openssl x509 -text
+  #+END_SRC
+
+    
+** Generate a CSR
+
+=openssl req -newkey rsa:2048 -nodes -out myhostname.csr -config myopenssl.cnf=
+
+For this a config file is needed. Fill it up with details like this:
+
+#+BEGIN_SRC sh
+######################################################################################
+[ req ]
+default_bits = 2048
+default_md = sha256
+default_keyfile = myhostname.pem
+distinguished_name = req_distinguished_name
+prompt = no
+req_extensions = v3_req # The extensions to add to a certificate request
+[ req_distinguished_name ]
+C=IN
+ST=Karnataka
+L=Bangalore
+O=None
+OU=None
+CN=arunsr.in
+[ v3_req ]
+subjectAltName = @alternate_names
+keyUsage = digitalSignature, keyEncipherment
+[ alternate_names ]
+DNS.1 = www.arunsr.in
+DNS.2 = blog.arunsr.in
+#######################################################################################
+#+END_SRC
+
+** Cipher regex check
+
+If you're setting a regex to block or enable certain ciphers, here's a
+quick way to verify what it expands to:
+
+#+BEGIN_SRC sh
+$ openssl ciphers -V 'RC4-SHA:HIGH:!ADH'
+RC4-SHA:DHE-RSA-AES256-SHA:DHE-DSS-AES256-SHA:AES256-SHA:DHE-RSA-AES128-SHA:DHE-DSS-AES128-SHA:AES128-SHA:EDH-RSA-DES-CBC3-SHA:EDH-DSS-DES-CBC3-SHA:DES-CBC3-SHA:DES-CBC3-MD5
+
+$ openssl ciphers -V 'ALL:!aNULL:!ADH:!eNULL:!MEDIUM:!LOW!EXP:RC4+RSA:+HIGH'
+DHE-RSA-AES256-SHA:DHE-DSS-AES256-SHA:AES256-SHA:DHE-RSA-AES128-SHA:DHE-DSS-AES128-SHA:AES128-SHA:EDH-RSA-DES-CBC3-SHA:EDH-DSS-DES-CBC3-SHA:DES-CBC3-SHA:DES-CBC3-MD5
+#+END_SRC
+
+** Convert between private key formats
+
+Some private keys have 'BEGIN PRIVATE KEY' (NEW, PKCS8) and others
+have 'BEGIN RSA PRIVATE KEY' (OLD, PKCS1). Here's how to convert
+between them:
+
+Newer versions of OpenSSL say BEGIN PRIVATE KEY because they contain
+the private key + an OID that identifies the key type (this is known
+as PKCS8 format). To get the old style key (known as either PKCS1 or
+traditional OpenSSL format) you can do this:
+
+=openssl rsa -in server.key -out server_new.key=
+
+Alternately, if you have a PKCS1 key and want PKCS8:
+
+=openssl pkcs8 -topk8 -nocrypt -in privkey.pem=
+
+(from https://stackoverflow.com/questions/17733536/how-to-convert-a-private-key-to-an-rsa-private-key)

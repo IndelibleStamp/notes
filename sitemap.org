@@ -3,6 +3,7 @@
    + [[file:git.org][Git Notes]]
    + [[file:linux.org][Linux Notes]]
    + [[file:networking.org][Networking Notes]]
+   + [[file:openssl.org][OpenSSL Notes]]
    + [[file:programming.org][Programming Notes]]
    + [[file:security.org][Security Notes]]
    + [[file:editors.org][Text Editors]]
