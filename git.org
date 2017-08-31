@@ -144,3 +144,41 @@ updating the submodule will get the latest commit in it.
 =git pull origin master=
 
 =git push newremote master=
+
+** Leaderboards
+
+=git shortlog -sn=
+
+** Hide Whitespace Noise 
+
+Good when some one changes indentations and a whole lot of rubbish
+comes).
+
+=git diff -w=
+
+** Show words that have changed inline
+
+=git diff --word-diff=
+
+** See what everyone is up to
+
+=git log --all --oneline --no-merges=
+
+** Generate a changelog
+
+=git log --oneline --no-merges <last tag>..HEAD=
+
+** View complex logs
+
+=git log --graph --all --decorate --stat --date=iso=
+
+** Handy aliases
+
+Put something like this in your /.gitconfig/
+
+#+BEGIN_SRC sh
+[alias]
+    st = status --branch --short
+    wat = log --graph --decorate --oneline -15
+    follow = log --follow -p
+#+END_SRC
