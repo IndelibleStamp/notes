@@ -315,7 +315,7 @@ set recording [$dom documentElement]
 - text is usually read-only.
 - stack and data are non-executable (to prevent (partially) overflows).
 
-** Algorithmic Complexit
+** Algorithmic Complexity
 
 
 | Notation   | Type          | Example                                |
