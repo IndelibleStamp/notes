@@ -19,6 +19,18 @@
 #+LATEX_HEADER:
 
 * General Linux
+
+** diff and patch
+
+#+BEGIN_SRC sh
+cp somepackage somepackage-new
+# make changes in somepackage-new
+diff -crB somepackage somepackage-new > mychanges.patch
+# give the patch to someone else, who can now do:
+cd somepackage
+patch -p1 < mychanges.patch
+#+END_SRC
+
 ** ccache notes
 Install from the repo as usual
 
