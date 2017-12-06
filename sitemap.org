@@ -1,5 +1,7 @@
 #+TITLE: Sitemap
 
+   + [[file:crypto101.org][Crypto 101 Notes]]
+   + [[file:docker.org][Docker]]
    + [[file:git.org][Git Notes]]
    + [[file:linux.org][Linux Notes]]
    + [[file:networking.org][Networking Notes]]
@@ -7,3 +9,4 @@
    + [[file:programming.org][Programming Notes]]
    + [[file:security.org][Security Notes]]
    + [[file:editors.org][Text Editors]]
+   + [[file:we-are-our-brains.org][We are our brains - Notes]]

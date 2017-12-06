@@ -32,6 +32,13 @@
 
 =openssl req -text -noout -verify -in server.csr=
 
+** Verify if a cert and key are pairs
+
+   #+BEGIN_SRC sh
+   openssl x509 -noout -modulus -in server.pem | openssl md5 ;\
+   openssl rsa -noout -modulus -in server.key | openssl md5
+   #+END_SRC
+
 ** Connect and verify
 
 - Connect to a remote host and see a whole lot of details:

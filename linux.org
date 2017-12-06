@@ -436,7 +436,7 @@ Query OK, 0 rows affected (0.00 sec)
 - =docker run --restart <etc>=: sets a policy to restart if it
   stops. doesn't start a new container, just restarts the same id.
 - NUMA - Non-Uniform Memory Access.
-- /=var/lib/docker/containers/<id>=
+- =/var/lib/docker/containers/<id>=
 - =/var/lib/docker/aufs/diff/<id>=: see the CopyOnWrite diffs between this instance and the base layers.
 - =docker diff <id>=: shows files changed in a container.
 - =docker inspect loopdate|less= : json metadata, e.g. ipaddress.

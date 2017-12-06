@@ -18,6 +18,33 @@
 #+CREATOR: <a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.5.1 (<a href="http://orgmode.org">Org</a> mode 8.3.4)
 #+LATEX_HEADER:
 
+** Leaderboards
+
+=git shortlog -sn=
+
+** Hide whitespace noise
+
+(good when some one changes indentations and a whole lot of rubbish
+comes) 
+
+=git diff -w=
+
+** show words that have changed inline
+
+=git diff --word-diff=
+
+** See what everyone is up to
+
+=git log --all --oneline --no-merges=
+
+** Generate a changelog
+
+=git log --oneline --no-merges <last tag>..HEAD=
+
+** View complex logs
+
+=git log --graph --all --decorate --stat --date=iso=
+
 ** Color coded git output
 =git config --global color.ui true=
 
